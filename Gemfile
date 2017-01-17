@@ -12,14 +12,21 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 group :development, :test do
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'launchy', require: false
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'shoulda'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'factory_girl'
   gem 'valid_attribute'
+  gem 'shoulda'
+  gem 'shoulda-matchers', require: false
+  gem 'launchy', require: false
 end
 
 group :production do
@@ -27,3 +34,5 @@ group :production do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'foundation-rails'
