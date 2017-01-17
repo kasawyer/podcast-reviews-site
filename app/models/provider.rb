@@ -1,6 +1,5 @@
 class Provider < ApplicationRecord
-  has_many :podcast_providers
-  has_many :podcasts, through: :podcast_providers
-  
+  has_many :podcasts
+
   validates :name, presence: true
 end

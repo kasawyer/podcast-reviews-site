@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117222536) do
+ActiveRecord::Schema.define(version: 20170117225554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,30 +48,17 @@ ActiveRecord::Schema.define(version: 20170117222536) do
     t.index ["podcast_id"], name: "index_podcast_hosts_on_podcast_id", using: :btree
   end
 
-  create_table "podcast_providers", force: :cascade do |t|
-    t.integer  "provider_id", null: false
-    t.integer  "podcast_id",  null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["podcast_id"], name: "index_podcast_providers_on_podcast_id", using: :btree
-    t.index ["provider_id", "podcast_id"], name: "index_podcast_providers_on_provider_id_and_podcast_id", unique: true, using: :btree
-    t.index ["provider_id"], name: "index_podcast_providers_on_provider_id", using: :btree
-  end
-
   create_table "podcasts", force: :cascade do |t|
     t.string   "name",           null: false
     t.integer  "provider_id",    null: false
     t.text     "description"
-    t.integer  "host_id"
-    t.integer  "category_id"
     t.integer  "release_year"
     t.string   "itunes_url"
     t.string   "soundcloud_url"
     t.string   "image_url"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["category_id"], name: "index_podcasts_on_category_id", using: :btree
-    t.index ["host_id"], name: "index_podcasts_on_host_id", using: :btree
+    t.index ["provider_id", "name"], name: "index_podcasts_on_provider_id_and_name", unique: true, using: :btree
     t.index ["provider_id"], name: "index_podcasts_on_provider_id", using: :btree
   end
 

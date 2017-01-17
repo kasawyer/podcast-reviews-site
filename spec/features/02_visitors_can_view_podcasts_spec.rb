@@ -2,9 +2,16 @@ require "rails_helper"
 
 feature "user visits home page" do
   scenario "user sees names of all podcasts" do
-    Podcast.create!(name: "This American Life", provider: "NPR", description: "Ira Glass doing what he does best - telling us great stories.")
-    Podcast.create!(name: "Serial", provider: "NPR", description: "Great murder mystery.")
-    Podcast.create!(name: "Fiest Parrot", provider: "Launch Academy", description: "Just a cool group of coding friends chattin' about life. The best podcast ever.", release_year: 2017, host: "MRKD")
+    npr = Provider.create!(name: "NPR")
+    launch = Provider.create!(name: "Launch Academy")
+
+    Podcast.create!(name: "This American Life", provider: npr, description: "Ira Glass doing what he does best - telling us great stories.")
+    Podcast.create!(name: "Serial", provider: npr, description: "Great murder mystery.")
+    Podcast.create!(name: "Fiest Parrot", provider: launch, description: "Just a cool group of coding friends chattin' about life. The best podcast ever.")
+
+    # link1 = PodcastHost.new(podcast: podcast, host: host1)
+
+    visit "/podcasts"
 
     expect(page).to have_content "This American Life"
     expect(page).to have_content "NPR"
