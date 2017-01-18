@@ -7,7 +7,7 @@ require "rails_helper"
 
 
 feature "visitors can add podcasts" do
-  scenario "visitor adds new podcast successfully" do
+  xscenario "visitor adds new podcast successfully" do
 
     visit new_podcast_path
     expect(page).to have_content "Add a podcast:"
@@ -32,7 +32,7 @@ feature "visitors can add podcasts" do
     expect(page).to have_content "MRKD"
   end
 
-  scenario "visitor does not provide proper information for a podcast" do
+  xscenario "visitor does not provide proper information for a podcast" do
     visit new_podcast_path
 
     click_button "Add podcast"

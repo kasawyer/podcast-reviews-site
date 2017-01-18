@@ -7,7 +7,7 @@ feature "user visits home page" do
 
     Podcast.create!(name: "This American Life", provider: npr, description: "Ira Glass doing what he does best - telling us great stories.")
     Podcast.create!(name: "Serial", provider: npr, description: "Great murder mystery.")
-    Podcast.create!(name: "Fiest Parrot", provider: launch, description: "Just a cool group of coding friends chattin' about life. The best podcast ever.")
+    Podcast.create!(name: "Fiesta Parrot", provider: launch, description: "Just a cool group of coding friends chattin' about life. The best podcast ever.")
 
     # link1 = PodcastHost.new(podcast: podcast, host: host1)
 
