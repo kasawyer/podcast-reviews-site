@@ -1,0 +1,48 @@
+
+<h1><%= @podcast.name %></h1>
+
+<ul>
+  <li> <%= @podcast.provider.name %> </li>
+
+  <li>
+    <% if @podcast.categories %>
+      <% @podcast.categories.each do |category| %>
+       <%= category.name %>
+      <% end %>
+    <% end %>
+  </li>
+  <li>
+    <% if @podcast.description %>
+    <%= @podcast.description %>
+    <% end %>
+  </li>
+  <li>
+    <% if @podcast.hosts %>
+      <% @podcast.hosts.each do |host| %>
+        <%= host.first_name %> <%= host.last_name %>
+      <% end %>
+    <% end %>
+  </li>
+  <li>
+    <% if @podcast.release_year %>
+      <%= @podcast.release_year %>
+    <% end %>
+  </li>
+  <li>
+    <% if @podcast.image_url %>
+      <%= @podcast.image_url %>
+    <% end %>
+  </li>
+  <li>
+    <% if @podcast.itunes_url %>
+      <%= @podcast.itunes_url %>
+    <% end %>
+  </li>
+  <li>
+    <% if @podcast.soundcloud_url %>
+      <%= @podcast.soundcloud_url %>
+    <% end %>
+  </li>
+</ul>
+
+<%= link_to "Back", podcasts_path %>
