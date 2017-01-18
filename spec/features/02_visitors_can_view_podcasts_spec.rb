@@ -5,11 +5,23 @@ feature "user visits home page" do
     npr = Provider.create!(name: "NPR")
     launch = Provider.create!(name: "Launch Academy")
 
-    Podcast.create!(name: "This American Life", provider: npr, description: "Ira Glass doing what he does best - telling us great stories.")
-    Podcast.create!(name: "Serial", provider: npr, description: "Great murder mystery.")
-    Podcast.create!(name: "Fiesta Parrot", provider: launch, description: "Just a cool group of coding friends chattin' about life. The best podcast ever.")
-
-    # link1 = PodcastHost.new(podcast: podcast, host: host1)
+    Podcast.create!(
+      name: "This American Life",
+      provider: npr,
+      description: "Ira Glass doing what he does best - telling us great
+        stories."
+    )
+    Podcast.create!(
+      name: "Serial",
+      provider: npr,
+      description: "Great murder mystery."
+    )
+    Podcast.create!(
+      name: "Fiesta Parrot",
+      provider: launch,
+      description: "Just a cool group of coding friends chattin' about life. The
+        best podcast ever."
+    )
 
     visit "/podcasts"
 
@@ -21,7 +33,8 @@ feature "user visits home page" do
     expect(page).to have_content "Launch Academy"
   end
 
-  xscenario "podcasts are listed in descending order based on most recent reviews" do
+  xscenario "podcasts are listed in descending order based on most recent
+    reviews" do
 
   end
 end
