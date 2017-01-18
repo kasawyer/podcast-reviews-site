@@ -12,27 +12,31 @@ podcast.
 
   scenario "user visits show page for Fresh Air" do
     npr = Provider.create!(name: "NPR")
-    ira = Host.create!(first_name: "Ira", last_name: "Glass")
-    politics = Category.create!(name: "Politics")
-
     fresh_air = Podcast.create!(name: "Fresh Air", provider: npr, description: \
     "A show about politics")
+    ira = Host.create!(first_name: "Ira", last_name: "Glass")
+    politics = Category.create!(name: "Politics")
+    PodcastHost.create!(host: ira, podcast: fresh_air)
+    Categorization.create!(category: politics, podcast: fresh_air)
+
     visit podcast_path(fresh_air)
 
     expect(page).to have_content("Fresh Air")
     expect(page).to have_content("NPR")
+    expect(page).to have_content("A show about politics")
+    expect(page).to have_content("Ira Glass")
+    expect(page).to have_content("Politics")
   end
 
   scenario "Link to index page" do
     npr = Provider.create!(name: "NPR")
-    ira = Host.create!(first_name: "Ira", last_name: "Glass")
-    politics = Category.create!(name: "Politics")
 
     fresh_air = Podcast.create!(name: "Fresh Air", provider: npr, description: \
     "A show about politics")
     visit podcast_path(fresh_air)
     click_on "Back"
 
+    expect(page).to_not have_content("A show about politics")
     expect(page).to have_content("Podcasts")
   end
 end
