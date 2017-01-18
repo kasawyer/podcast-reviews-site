@@ -8,7 +8,7 @@ feature 'visitors can add podcasts' do
     visit new_podcast_path
     expect(page).to have_content 'Add a podcast:'
 
-    fill_in 'Name', with: 'Fiesta Parrot'
+    fill_in 'Title', with: 'Fiesta Parrot'
     fill_in 'Description', with: "Just a cool group of coding friends chattin'
       about life. The best podcast ever."
     check 'Documentary'
@@ -27,7 +27,7 @@ feature 'visitors can add podcasts' do
 
   scenario "user submits a podcast with the name 'Howard Stern Show'" do
     visit new_podcast_path
-    fill_in 'Name', with: 'Howard Stern Show'
+    fill_in 'Title', with: 'Howard Stern Show'
     fill_in 'Provider', with: 'Sirius XM'
     fill_in 'Description', with: 'Simply disgusting.'
     fill_in 'Release year', with: '1995'
