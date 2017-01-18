@@ -9,8 +9,6 @@ feature "user visits home page" do
     Podcast.create!(name: "Serial", provider: npr, description: "Great murder mystery.")
     Podcast.create!(name: "Fiesta Parrot", provider: launch, description: "Just a cool group of coding friends chattin' about life. The best podcast ever.")
 
-    # link1 = PodcastHost.new(podcast: podcast, host: host1)
-
     visit "/podcasts"
 
     expect(page).to have_content "This American Life"
