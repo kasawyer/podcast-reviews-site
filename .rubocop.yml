@@ -194,7 +194,7 @@ StringLiterals:
 VariableInterpolation:
   Enabled: false
 
-TrailingComma:
+TrailingCommaInLiteral:
   Enabled: false
 
 TrivialAccessors:
@@ -276,3 +276,6 @@ Style/UnneededPercentQ:
 
 Metrics/AbcSize:
   Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'scenario', 'feature']

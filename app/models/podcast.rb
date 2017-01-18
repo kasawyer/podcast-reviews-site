@@ -7,6 +7,7 @@ class Podcast < ApplicationRecord
 
   validates :name, presence: true
   validates :provider, presence: true
-  validates :release_year, numericality: true, inclusion: { in: 1900..3000 }, allow_nil: true
+  validates :release_year, numericality: true, allow_nil: true
+  validates :release_year, inclusion: { in: 1900..3000 }, allow_nil: true
   validates :name, uniqueness: { scope: :provider }
 end
