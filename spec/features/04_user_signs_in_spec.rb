@@ -84,4 +84,15 @@ feature "User creates an account" do
     expect(page).to have_content "Sign in"
   end
 
+  scenario "user can't sign in with invalid email format" do
+    visit new_user_registration_path
+
+    fill_in "Email", with: "rk2211gmail.com"
+    fill_in "Password", with: "chewbacca"
+    fill_in "Password confirmation", with: "chewbacca"
+
+    click_on "Sign up"
+
+    expect(page).to have_content "Email is invalid"
+  end
 end
