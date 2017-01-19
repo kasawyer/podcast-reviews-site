@@ -24,7 +24,6 @@ feature "User creates an account" do
     )
 
     visit "/"
-
     click_on "Sign up"
 
     fill_in "Name", with: "Chewy"
@@ -49,7 +48,7 @@ feature "User creates an account" do
     expect(page).to have_content "Email is invalid"
   end
 
-  scenario "user tries to create an account without email or password" do
+  scenario "user tries to create an account without name, email or password" do
     visit "/"
     click_on "Sign up"
     fill_in "Email", with: ""
@@ -82,7 +81,11 @@ feature "User creates an account" do
   end
 
   scenario "user can sign out" do
-    User.create!(email: "rk2211@gmail.com", password: "chewbacca")
+    User.create!(
+      name: "Chewy",
+      email: "rk2211@gmail.com",
+      password: "chewbacca"
+    )
 
     visit "/"
     click_on "Sign in"
