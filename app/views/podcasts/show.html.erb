@@ -2,47 +2,53 @@
 <h1><%= @podcast.name %></h1>
 
 <ul>
-  <li> <%= @podcast.provider.name %> </li>
+  <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
 
+  <% if !@podcast.categories.empty? %>
   <li>
-    <% if @podcast.categories %>
-      <% @podcast.categories.each do |category| %>
-       <%= category.name %>
-      <% end %>
+    <% @podcast.categories.each do |category| %>
+     <%= "Category: #{category.name}" %>
     <% end %>
   </li>
+  <% end %>
+
+  <% if !@podcast.description.nil? && !@podcast.description.empty? %>
   <li>
-    <% if @podcast.description %>
-    <%= @podcast.description %>
+    <%= "Description: #{@podcast.description}" %>
+  </li>
+  <% end %>
+
+  <% if !@podcast.hosts.empty? %>
+  <li> Host(s):
+    <% @podcast.hosts.each do |host| %>
+      <%= host.name %> <br/>
     <% end %>
   </li>
+  <% end %>
+
+  <% if @podcast.release_year %>
   <li>
-    <% if @podcast.hosts %>
-      <% @podcast.hosts.each do |host| %>
-        <%= host.first_name %> <%= host.last_name %>
-      <% end %>
-    <% end %>
+    <%= "Release year: #{@podcast.release_year}" %>
   </li>
+  <% end %>
+
+  <% if @podcast.image_url %>
   <li>
-    <% if @podcast.release_year %>
-      <%= @podcast.release_year %>
-    <% end %>
+    <img src="<%=@podcast.image_url%>"/>
   </li>
+  <% end %>
+
+  <% if @podcast.itunes_url %>
   <li>
-    <% if @podcast.image_url %>
-      <%= @podcast.image_url %>
-    <% end %>
+    <%= "Listen on iTunes: #{@podcast.itunes_url}" %>
   </li>
+  <% end %>
+
+  <% if @podcast.soundcloud_url %>
   <li>
-    <% if @podcast.itunes_url %>
-      <%= @podcast.itunes_url %>
-    <% end %>
+    <%= "Listen on SoundCloud: #{@podcast.soundcloud_url}" %>
   </li>
-  <li>
-    <% if @podcast.soundcloud_url %>
-      <%= @podcast.soundcloud_url %>
-    <% end %>
-  </li>
+  <% end %>
 </ul>
 
-<%= link_to "Back", podcasts_path %>
+<%= link_to "Back to podcasts", podcasts_path %>

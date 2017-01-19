@@ -14,7 +14,7 @@ podcast.
     npr = Provider.create!(name: "NPR")
     fresh_air = Podcast.create!(name: "Fresh Air", provider: npr, description: \
     "A show about politics")
-    ira = Host.create!(first_name: "Ira", last_name: "Glass")
+    ira = Host.create!(name: "Ira Glass")
     politics = Category.create!(name: "Politics")
     PodcastHost.create!(host: ira, podcast: fresh_air)
     Categorization.create!(category: politics, podcast: fresh_air)
