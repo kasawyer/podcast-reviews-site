@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Podcast Reviews" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -12,11 +12,41 @@
   </head>
 
   <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text"><a href="/">Podcast Reviews</a></li>
+          <li>
+            <a href="#">Add...</a>
+            <ul class="menu vertical">
+              <li><a href="#">Podcast</a></li>
+              <li><a href="#">Review</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Top Podcasts</a></li>
+          <li><a href="#">Souncloud</a></li>
+          <li><a href="#">iTunes</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <% if user_signed_in? %>
+            <li>Signed in as <%= current_user.email %></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% end %>
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+    </div>
 
     <% flash.each do |key, value| %>
       <%= value %>
     <% end %>
-  
+
     <%= yield %>
 
   </body>
