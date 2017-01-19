@@ -25,7 +25,6 @@ feature "User creates an account" do
     fill_in "Email", with: "rk2211@gmail.com"
     fill_in "Password", with: "chewbacca"
     fill_in "Password confirmation", with: "chewbacca"
-    
     click_button "Sign up"
 
     expect(page).to have_content "Email has already been taken"
