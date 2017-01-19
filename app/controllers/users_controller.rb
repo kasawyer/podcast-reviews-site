@@ -14,8 +14,7 @@ class UsersController < ApplicationController
       flash[:notice] = "User added successfully"
       redirect_to user_path(@user)
     else
-      flash.now[:notice] =
-      @user.errors.full_messages
+      flash.now[:notice] = @user.errors.full_messages
       render :new
     end
   end
@@ -23,9 +22,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit( :email, :password)
+    params.require(:user).permit(:email, :password)
   end
-
-
-
 end
