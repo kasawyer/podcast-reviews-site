@@ -19,12 +19,13 @@ feature "User creates an account" do
     User.create!(email: "rk2211@gmail.com", password: "chewbacca")
 
     visit "/"
+
     click_on "Sign up"
 
     fill_in "Email", with: "rk2211@gmail.com"
     fill_in "Password", with: "chewbacca"
     fill_in "Password confirmation", with: "chewbacca"
-
+# save_and_open_page
     click_button "Sign up"
 
     expect(page).to have_content "Email has already been taken"
@@ -86,14 +87,13 @@ feature "User creates an account" do
   end
 
   scenario "user can't sign in with invalid email format" do
-    visit new_user_registration_path
+    visit '/'
+    click_on "Sign in"
 
     fill_in "Email", with: "rk2211gmail.com"
     fill_in "Password", with: "chewbacca"
-    fill_in "Password confirmation", with: "chewbacca"
 
-    click_on "Sign up"
-
-    expect(page).to have_content "Email is invalid"
+    click_button 'Sign in'
+    expect(page).to have_content "Invalid Email or password"
   end
 end
