@@ -3,7 +3,7 @@
   <% @podcasts.each do |podcast| %>
   <li>
     <img src="<%= podcast.image_url %>"/>
-    <%= podcast.name %>
+    <%= link_to podcast.name, podcast %> <br/>
     <%= podcast.provider.name %>
   </li>
   <% end %>
