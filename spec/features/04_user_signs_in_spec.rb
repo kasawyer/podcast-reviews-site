@@ -46,6 +46,7 @@ feature "User creates an account" do
   scenario "user tries to create an account without email or password" do
     visit "/"
     click_on "Sign up"
+    fill_in "Email", with: ""
 
     click_button "Sign up"
 
@@ -62,7 +63,7 @@ feature "User creates an account" do
     fill_in "Email", with: "rk2211@gmail.com"
     fill_in "Password", with: "chewbacca"
 
-    click_on "Log in"
+    click_button "Sign in"
 
     expect(page).to have_content "Signed in successfully"
     expect(page).to have_content "Signed in as rk2211@gmail.com"
@@ -78,7 +79,7 @@ feature "User creates an account" do
     fill_in "Email", with: "rk2211@gmail.com"
     fill_in "Password", with: "chewbacca"
 
-    click_on "Log in"
+    click_button "Sign in"
 
     click_on "Sign out"
     expect(page).to have_content "Sign in"
