@@ -12,9 +12,6 @@ class UsersController < ApplicationController
     @user.avatar = user_params[:avatar]
 
     if @user.save
-      # u.avatar.url # => '/url/to/file.png'
-      # u.avatar.current_path # => 'path/to/file.png'
-      # u.avatar_identifier # => 'file.png'
       flash[:notice] = "User added successfully"
       redirect_to user_path(@user)
     else
@@ -30,7 +27,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :remember_me, :avatar,
-      :avatar_cache, :remove_avatar)
+    params.require(:user).permit(:name, :email, :password, :remember_me,
+      :avatar, :avatar_cache, :remove_avatar)
   end
 end

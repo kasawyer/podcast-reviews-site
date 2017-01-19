@@ -16,7 +16,11 @@ feature "User creates an account" do
   end
 
   scenario "user tries to create an account with an unavailable email" do
-    User.create!(name: "Chewy", email: "rk2211@gmail.com", password: "chewbacca")
+    User.create!(
+      name: "Chewy",
+      email: "rk2211@gmail.com",
+      password: "chewbacca"
+    )
 
     visit new_user_registration_path
 
@@ -41,7 +45,11 @@ feature "User creates an account" do
   end
 
   scenario "user can sign in again after creating an account" do
-    User.create!(name: "Chewy", email: "rk2211@gmail.com", password: "chewbacca")
+    User.create!(
+      name: "Chewy",
+      email: "rk2211@gmail.com",
+      password: "chewbacca"
+    )
 
     visit new_user_session_path
 
