@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20170118225141) do
   end
 
   create_table "hosts", force: :cascade do |t|
-    t.string   "first_name", null: false
-    t.string   "last_name",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name",       null: false
+    t.index ["name"], name: "index_hosts_on_name", using: :btree
   end
 
   create_table "podcast_hosts", force: :cascade do |t|
