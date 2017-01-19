@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.avatar = user_params[:avatar]
 
     if @user.save
       flash[:notice] = "User added successfully"
@@ -19,9 +20,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    # NEEDS TO HANDLE AVATAR
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:name, :email, :password, :remember_me,
+      :avatar, :avatar_cache, :remove_avatar)
   end
 end
