@@ -5,6 +5,11 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params[:id])
+    @review = Review.new
+    if @review
+      @review = Review.find(params[:podcast_id])
+      @reviews = @podcast.reviews
+    end
   end
 
   def new

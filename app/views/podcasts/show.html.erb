@@ -50,5 +50,33 @@
   </li>
   <% end %>
 </ul>
+<br/>
+
+<h2>Add a review:</h2>
+
+<%= form_for [@podcast, @review] do |f| %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Review" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add review"%>
+  </div>
+<% end %>
+<br/>
+
+<% if @reviews %>
+  <h2>Reviews:</h2>
+  <% @reviews.each do |review| %>
+    <%= review.rating %> <br/>
+    <%= review.body %>
+  <% end %>
+<% end %>
 
 <%= link_to "Back to podcasts", podcasts_path %>
