@@ -94,6 +94,9 @@ FlipFlop:
 FormatString:
   Enabled: false
 
+FrozenStringLiteralComment:
+  Enabled: false
+
 GlobalVars:
   Enabled: false
 
