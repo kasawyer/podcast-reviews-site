@@ -16,7 +16,7 @@ class PodcastsController < ApplicationController
   def create
     @podcast = Podcast.new(podcast_params)
     @hosts = []
-    podcast_params[:hosts_attributes].each do |key, host_info|
+    podcast_params[:hosts_attributes].each do |_key, host_info|
       host = Host.find_or_create_by(name: host_info[:name])
       if !host.id.nil?
         @hosts.push(host)
@@ -41,6 +41,6 @@ class PodcastsController < ApplicationController
   def podcast_params
     params.require(:podcast).permit(:name, :description, :host, :provider_name,
       :average_length, :release_year, :itunes_link, :soundcloud_link,
-      hosts_attributes:[:name])
+      hosts_attributes: [:name])
   end
 end

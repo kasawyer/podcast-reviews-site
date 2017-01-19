@@ -1,8 +1,8 @@
 <h1>Add a podcast:</h1>
 
 <%= form_for(@podcast) do |f| %>
-  <div class="field">
-    <%= f.label :name, "Title" %>
+  <div class="name">
+    <%= f.label :name, "Name" %>
     <%= f.text_field :name %>
   </div>
 
@@ -16,7 +16,7 @@
     <%= f.text_area :description %>
   </div>
 
-  <div class="field">
+  <div class="host">
     <%= f.label :name, "Host" %>
     <%= f.fields_for :hosts, @podcast.hosts.build do |hosts_fields| %>
       <%= hosts_fields.text_field :name %>

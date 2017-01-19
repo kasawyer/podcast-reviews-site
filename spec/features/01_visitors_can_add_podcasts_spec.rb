@@ -8,15 +8,19 @@ feature 'visitors can add podcasts' do
     visit new_podcast_path
     expect(page).to have_content 'Add a podcast:'
 
-    fill_in 'Title', with: 'Fiesta Parrot'
+    within('.name') do
+      fill_in 'Name', with: 'Fiesta Parrot'
+    end
     fill_in 'Description', with: "Just a cool group of coding friends chattin'
       about life. The best podcast ever."
     check 'Documentary'
     check 'Comedy'
     fill_in 'Release year', with: 2017
     fill_in 'Provider', with: 'Launch Academy'
-    fill_in 'Host', with: 'MRKD'
-    fill_in 'Additional host', with: 'Launch'
+    within('.host') do
+      fill_in 'podcast_hosts_attributes_0_name', with: 'MRKD'
+      fill_in 'podcast_hosts_attributes_1_name', with: 'Launch'
+    end
 
     click_button 'Add podcast'
 
@@ -27,17 +31,22 @@ feature 'visitors can add podcasts' do
 
   scenario "user submits a podcast with the name 'Howard Stern Show'" do
     visit new_podcast_path
-    fill_in 'Title', with: 'Howard Stern Show'
+    within('.name') do
+      fill_in 'Name', with: 'Howard Stern Show'
+    end
     fill_in 'Provider', with: 'Sirius XM'
     fill_in 'Description', with: 'Simply disgusting.'
     fill_in 'Release year', with: '1995'
-    fill_in 'Host', with: 'Howard Stern'
+    within('.host') do
+      fill_in 'podcast_hosts_attributes_0_name', with: 'Robin'
+    end
     check 'Comedy'
     fill_in 'iTunes link', with: 'http://www.itunes.com/stern'
     click_button 'Add podcast'
 
-    expect(page).to have_content 'Podcasts'
+    expect(page).to have_content 'Podcast added successfully'
     expect(page).to have_content 'Howard Stern Show'
+    expect(page).to have_content 'Robin'
   end
 
   scenario 'visitor does not provide proper information for a podcast' do
