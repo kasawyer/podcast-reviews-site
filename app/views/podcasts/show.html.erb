@@ -6,8 +6,9 @@
 
   <% if !@podcast.categories.empty? %>
   <li>
+    <%= 'Category:' %> <br/>
     <% @podcast.categories.each do |category| %>
-     <%= "Category: #{category.name}" %>
+     <%= category.name %> <br/>
     <% end %>
   </li>
   <% end %>
@@ -73,10 +74,13 @@
 
 <% if @reviews %>
   <h2>Reviews:</h2>
+  <ul>
   <% @reviews.each do |review| %>
-    <%= review.rating %> <br/>
-    <%= review.body %>
+    <li>
+      <%= "#{review.rating}: #{review.body}" %>
+    </li>
   <% end %>
+  </ul>
 <% end %>
 
 <%= link_to "Back to podcasts", podcasts_path %>

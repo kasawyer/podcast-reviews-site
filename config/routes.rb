@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :podcasts, only: [:index, :show, :new, :create] do
-    resources :reviews, only: [:create, :edit, :update, :delete]
+    resources :reviews, only: [:create, :edit, :update, :destroy]
   end
 end

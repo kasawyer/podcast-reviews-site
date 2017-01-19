@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   def show
     @review = Review.find(params[:id])
   end
@@ -15,7 +14,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.podcast = @podcast
     @review.user = current_user
-    
+
     if @review.save
       flash[:notice] = "Review added successfully"
       redirect_to podcast_path(@podcast)
@@ -25,17 +24,10 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def delete
-  end
-
   private
+
   def review_params
-    params.require(:review).permit(:rating, :body, :user_id, :podcast_id, :timestamp)
+    params.require(:review).permit(:rating, :body, :user_id, :podcast_id,
+      :timestamp)
   end
 end
