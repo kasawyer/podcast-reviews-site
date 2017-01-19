@@ -1,9 +1,11 @@
 source 'https://rubygems.org/'
 
+gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
+gem 'pry'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.0'
 gem 'sass-rails', '~> 5.0'
