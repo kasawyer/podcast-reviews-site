@@ -103,11 +103,24 @@ feature "User creates an account" do
     visit '/'
     click_on "Sign in"
 
-    fill_in "Name", with: "Chewy"
     fill_in "Email", with: "rk2211gmail.com"
     fill_in "Password", with: "chewbacca"
 
     click_button 'Sign in'
     expect(page).to have_content "Invalid Email or password"
+  end
+
+  scenario "user creates an account with an avatar" do
+    visit '/'
+    click_on "Sign up"
+
+    fill_in "Name", with: "Chewy"
+    fill_in "Email", with: "rk2211@gmail.com"
+    fill_in "Password", with: "chewbacca"
+    fill_in "Password confirmation", with: "chewbacca"
+    attach_file('user_avatar', Rails.root + 'spec/images/chewbacca.jpg')
+    click_button "Sign up"
+
+    expect(page).to have_content "Welcome! You have signed up successfully."
   end
 end
