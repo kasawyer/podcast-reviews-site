@@ -1,13 +1,13 @@
-<h1>Add a podcast:</h1>
+<h1>Add a podcast</h1>
 
 <%= form_for(@podcast) do |f| %>
   <div class="name">
-    <%= f.label :name, "Name" %>
+    <%= f.label :name, "Name (required)" %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :provider_name, "Provider" %>
+    <%= f.label :provider_name, "Provider (required)" %>
     <%= f.text_field :provider_name, value: @podcast.provider.name%>
   </div>
 
@@ -50,7 +50,8 @@
   <div class="actions">
     <%= f.submit "Add podcast" %>
   </div>
-
 <% end %>
-<br/>
-<%= link_to "Back to podcasts", podcasts_path %>
+
+<div class="actions">
+  <%= button_to "Cancel", podcasts_path, method: :get %>
+</div>
