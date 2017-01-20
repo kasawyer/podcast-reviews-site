@@ -1,13 +1,4 @@
 class ReviewsController < ApplicationController
-  def show
-    @review = Review.find(params[:id])
-  end
-
-  def new
-    @podcast = Podcast.find(params[:podcast_id])
-    @review = Review.new
-    @review.user = current_user
-  end
 
   def create
     @podcast = Podcast.find(params[:podcast_id])
