@@ -3,7 +3,13 @@ require 'rails_helper'
 feature 'visitors can add reviews' do
   let! (:npr) { Provider.create(name: "NPR") }
   let! (:fresh_air) { Podcast.create(name: "Fresh Air", provider: npr) }
-  let! (:user) { User.create(email: "person@gmail.com", password: "password") }
+  let! (:user) do
+    User.create(
+      email: "person@gmail.com",
+      password: "password",
+      name: "Person"
+    )
+  end
 
   scenario 'visitor adds new review successfully' do
     visit new_user_session_path
@@ -11,7 +17,7 @@ feature 'visitors can add reviews' do
     fill_in "Email", with: "person@gmail.com"
     fill_in "Password", with: "password"
 
-    click_on "Log in"
+    click_button "Sign in"
 
     visit podcast_path(fresh_air)
     expect(page).to have_content 'Add a review:'

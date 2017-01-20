@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   def create
     @podcast = Podcast.find(params[:podcast_id])
     @review = Review.new(review_params)
