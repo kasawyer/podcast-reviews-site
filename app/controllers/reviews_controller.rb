@@ -32,7 +32,8 @@ class ReviewsController < ApplicationController
       flash[:notice] = "Review updated successfully"
       redirect_to podcast_path(@podcast)
     else
-      render :'/podcasts/show', flash.now[:notice] = "Review not updated"
+      flash.now[:notice] = "Review not updated"
+      render :'/podcasts/show'
     end
   end
 
@@ -40,7 +41,10 @@ class ReviewsController < ApplicationController
     @podcast = Podcast.find(params[:podcast_id])
     @review = @podcast.reviews.find(params[:id])
     @review.destroy
-    render :'/podcasts/show', flash.now[:notice] = "Review deleted"
+    @new_review = Review.new
+    @reviews = @podcast.reviews
+    flash.now[:notice] = "Review deleted"
+    render :'/podcasts/show'
   end
 
 
