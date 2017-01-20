@@ -1,14 +1,21 @@
 
 <h1><%= @podcast.name %></h1>
 
-<ul>
+<ul class="podcast-info">
+  
   <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
-
+  
+  <% if @podcast.image_url %>
+  <li>
+    <img src="<%=@podcast.image_url%>"/>
+  </li>
+  <% end %>
+  
   <% if !@podcast.categories.empty? %>
   <li>
-    <%= 'Category:' %> <br/>
+    Categories:
     <% @podcast.categories.each do |category| %>
-     <%= category.name %> <br/>
+    <%= category.name %>
     <% end %>
   </li>
   <% end %>
@@ -32,13 +39,7 @@
     <%= "Release year: #{@podcast.release_year}" %>
   </li>
   <% end %>
-
-  <% if @podcast.image_url %>
-  <li>
-    <img src="<%=@podcast.image_url%>"/>
-  </li>
-  <% end %>
-
+  
   <% if @podcast.itunes_url %>
   <li>
     <%= "Listen on iTunes: #{@podcast.itunes_url}" %>

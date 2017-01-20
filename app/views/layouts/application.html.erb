@@ -24,15 +24,16 @@
             </ul>
           </li>
           <li><a href="#">Top Podcasts</a></li>
-          <li><a href="#">Souncloud</a></li>
+          <li><a href="#">Soundcloud</a></li>
           <li><a href="#">iTunes</a></li>
         </ul>
       </div>
       <div class="top-bar-right">
         <ul class="menu">
           <% if user_signed_in? %>
-            <li>Signed in as <%= current_user.email %></li>
+            <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
           <% else %>
             <li><%= link_to "Sign in", new_user_session_path %></li>
             <li><%= link_to "Sign up", new_user_registration_path %></li>
