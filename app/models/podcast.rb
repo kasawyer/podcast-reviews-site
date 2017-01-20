@@ -3,6 +3,7 @@ class Podcast < ApplicationRecord
   has_many :categories, through: :categorizations
   has_many :podcast_hosts
   has_many :hosts, through: :podcast_hosts
+  has_many :reviews
   belongs_to :provider
   accepts_nested_attributes_for :hosts
 
