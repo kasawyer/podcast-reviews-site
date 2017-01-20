@@ -12,8 +12,12 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with:
      /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/ }
-  validates :password, presence: true, length: { minimum: 6, maximum: 120 },
+  validates :password,
+    presence: true,
+    length: { minimum: 6, maximum: 120 },
     on: :create
-  validates :password, length: { minimum: 6, maximum: 120 }, 
-    on: :update, allow_blank: true
+  validates :password,
+    length: { minimum: 6, maximum: 120 },
+    on: :update,
+    allow_blank: true
 end
