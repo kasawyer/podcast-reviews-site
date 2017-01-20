@@ -2,6 +2,7 @@ source 'https://rubygems.org/'
 
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
+gem 'fog-aws'
 gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
