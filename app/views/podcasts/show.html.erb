@@ -4,9 +4,12 @@
 <ul class="podcast-info">
   <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
 
-  <% if @podcast.image_url %>
+  <% if !podcast.categories.empty? %>
   <li>
-    <img src="<%=@podcast.image_url%>"/>
+    <%= 'Category:' %> <br/>
+    <% @podcast.categories.each do |category| %>
+     <%= category.name %> <br/>
+    <% end %>
   </li>
   <% end %>
 
@@ -30,15 +33,10 @@
   </li>
   <% end %>
 
-
-  <% if !@podcast.categories.empty? %>
+  <% if @podcast.image_url %>
   <li>
-    Categories:
-    <% @podcast.categories.each do |category| %>
-    <%= category.name %>
-    <% end %>
+    <img src="<%=@podcast.image_url%>"/>
   </li>
-  <% end %>
 
   <% if @podcast.itunes_url %>
   <li>
@@ -52,5 +50,36 @@
   </li>
   <% end %>
 </ul>
+<br/>
+
+<h2>Add a review:</h2>
+
+<%= form_for [@podcast, @review] do |f| %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Review" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add review"%>
+  </div>
+<% end %>
+<br/>
+
+<% if @reviews %>
+  <h2>Reviews:</h2>
+  <ul>
+  <% @reviews.each do |review| %>
+    <li>
+      <%= "#{review.rating}: #{review.body}" %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
 
 <%= link_to "Back to podcasts", podcasts_path %>
