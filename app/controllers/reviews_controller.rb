@@ -47,7 +47,6 @@ class ReviewsController < ApplicationController
     render :'/podcasts/show'
   end
 
-
   private
 
   def review_params
