@@ -85,16 +85,22 @@
 <br/>
 
 <% if @reviews %>
+<div class="reviews">
   <h2>Reviews:</h2>
   <ul>
-  <% @reviews.each do |review| %>
+    <% @reviews.each do |review| %>
     <li>
-      <%= "#{review.rating}: #{review.body}" %>
+      <%= "Rating: #{review.rating}" %>
+      <div class="user-name">
+        <%= review.user.name %>
+      </div>
+      <%= review.body %><br />
       <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
     </li>
-  <% end %>
+    <% end %>
   </ul>
+</div>
 <% end %>
 
 <%= link_to "Back to podcasts", podcasts_path %>
