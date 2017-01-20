@@ -1,19 +1,17 @@
 require 'spec_helper'
 
-feature "User visits a podcast", %(
-As a User
-I want to visit a podcast I clicked on to see the details
-
-Acceptance Criteria:
-[x] When I click on podcast, I go to a page that shows the descriptions of the\
-podcast.
-[x] There is a link back to the index page.
-) do
+feature "User visits a podcast" do
 
   scenario "user visits show page for Fresh Air" do
     npr = Provider.create!(name: "NPR")
-    fresh_air = Podcast.create!(name: "Fresh Air", provider: npr, description: \
-    "A show about politics")
+    fresh_air = Podcast.create!(
+      name: "Fresh Air",
+      provider: npr,
+      description: "A show about politics",
+      release_year: 2009,
+      soundcloud_url: "https://soundcloud.com/",
+      itunes_url: "http://www.apple.com/itunes"
+    )
     ira = Host.create!(name: "Ira Glass")
     politics = Category.create!(name: "Politics")
     PodcastHost.create!(host: ira, podcast: fresh_air)
@@ -26,6 +24,9 @@ podcast.
     expect(page).to have_content("A show about politics")
     expect(page).to have_content("Ira Glass")
     expect(page).to have_content("Politics")
+    expect(page).to have_content("2009")
+    expect(page).to have_content("https://soundcloud.com/")
+    expect(page).to have_content("http://www.apple.com/itunes")
   end
 
   scenario "Link to index page" do
