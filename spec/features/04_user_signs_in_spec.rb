@@ -76,7 +76,7 @@ feature "User creates an account" do
     click_button "Sign in"
 
     expect(page).to have_content "Signed in successfully"
-    expect(page).to have_content "Signed in as rk2211@gmail.com"
+    expect(page).to have_content "Signed in as Chewy"
     expect(page).to have_content "Sign out"
   end
 
