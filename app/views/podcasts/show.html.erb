@@ -57,26 +57,36 @@
 <%= link_to "Delete", @podcast, method: :delete,
   data: { confirm: 'Are you sure?' } %><br />
 
-<% if !@review.nil?%>
+<% if !@edit_review.nil?%>
   <h2>Edit review:</h2>
-<% else %>
-  <h2>Add a review:</h2>
-<% end %>
-<%= form_for [@podcast, @new_review] do |f| %>
-  <div class="field">
-    <%= f.label :rating %>
-    <%= f.text_field :rating %>
-  </div>
+  <%= form_for [@podcast, @edit_review] do |f| %>
+    <div class="field">
+      <%= f.label :rating %>
+      <%= f.text_field :rating %>
+    </div>
 
-  <div class="field">
-    <%= f.label :body, "Review" %>
-    <%= f.text_area :body %>
-  </div>
-  <% if !@review.nil?%>
+    <div class="field">
+      <%= f.label :body, "Review" %>
+      <%= f.text_area :body %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Submit review"%>
     </div>
-  <% else %>
+  <% end %>
+<% else %>
+  <h2>Add a review:</h2>
+  <%= form_for [@podcast, @new_review] do |f| %>
+    <div class="field">
+      <%= f.label :rating %>
+      <%= f.text_field :rating %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body, "Review" %>
+      <%= f.text_area :body %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Add review"%>
     </div>

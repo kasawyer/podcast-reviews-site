@@ -5,11 +5,13 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params[:id])
-    @new_review = Review.new
+    if @edit_review.nil?
+      @new_review = Review.new
+    end
     if !@podcast.reviews.empty?
       @reviews = @podcast.reviews.order("updated_at DESC").all
-      if !@review.nil?
-        @review = @podcast.reviews.find(params[:review_id])
+      if !@edit_review.nil?
+        @edit_review = @podcast.reviews.find(params[:review_id])
       end
     end
   end
