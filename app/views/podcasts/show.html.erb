@@ -52,7 +52,10 @@
   </li>
   <% end %>
 </ul>
-<br/>
+
+<%= link_to "Edit", edit_podcast_path(@podcast) %><br />
+<%= link_to "Delete", @podcast, method: :delete,
+  data: { confirm: 'Are you sure?' } %><br />
 
 <% if !@edit_review.nil?%>
   <h2>Edit review:</h2>

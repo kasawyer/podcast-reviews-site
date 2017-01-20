@@ -1,4 +1,4 @@
-<h1>Add a podcast</h1>
+<h1>Edit podcast</h1>
 
 <%= form_for(@podcast) do |f| %>
   <div class="name">
@@ -48,10 +48,10 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Add podcast" %>
+    <%= f.submit "Update podcast" %>
   </div>
 <% end %>
 
 <div class="actions">
-  <%= button_to "Cancel", podcasts_path, method: :get %>
+  <%= button_to "Cancel", podcast_path, method: :get %>
 </div>
