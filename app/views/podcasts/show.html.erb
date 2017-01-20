@@ -1,10 +1,10 @@
 
 <h1><%= @podcast.name %></h1>
 
-<ul>
+<ul class="podcast-info">
   <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
 
-  <% if !@podcast.categories.empty? %>
+  <% if !podcast.categories.empty? %>
   <li>
     <%= 'Category:' %> <br/>
     <% @podcast.categories.each do |category| %>
@@ -37,7 +37,6 @@
   <li>
     <img src="<%=@podcast.image_url%>"/>
   </li>
-  <% end %>
 
   <% if @podcast.itunes_url %>
   <li>

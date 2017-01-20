@@ -1,0 +1,46 @@
+h1 {
+  margin: 20px;
+}
+
+body {
+  background-color: #D7DAE5;
+}
+
+form {
+  margin: 30px;
+}
+
+input[type="submit"] {
+  border: none;
+  color: white;
+  background-color: #376996;
+  padding: 8px;
+  font-size: 20px;
+}
+
+input[type="text"], textarea {
+  width: 400px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.podcast-index {
+  margin: 10px;
+  list-style: none;
+}
+
+.podcast-list-item {
+  background-color: #434975;
+  margin: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.podcast-info {
+  margin: 10px;
+  list-style: none;
+  font-size: 20px;
+}
