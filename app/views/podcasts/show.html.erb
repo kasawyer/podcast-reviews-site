@@ -53,9 +53,12 @@
 </ul>
 <br/>
 
-<h2>Add a review:</h2>
-
-<%= form_for [@podcast, @review] do |f| %>
+<% if !@review.nil?%>
+  <h2>Edit review:</h2>
+<% else %>
+  <h2>Add a review:</h2>
+<% end %>
+<%= form_for [@podcast, @new_review] do |f| %>
   <div class="field">
     <%= f.label :rating %>
     <%= f.text_field :rating %>
@@ -65,10 +68,15 @@
     <%= f.label :body, "Review" %>
     <%= f.text_area :body %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Add review"%>
-  </div>
+  <% if !@review.nil?%>
+    <div class="actions">
+      <%= f.submit "Submit review"%>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= f.submit "Add review"%>
+    </div>
+  <% end %>
 <% end %>
 <br/>
 
@@ -78,6 +86,8 @@
   <% @reviews.each do |review| %>
     <li>
       <%= "#{review.rating}: #{review.body}" %>
+      <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
     </li>
   <% end %>
   </ul>
