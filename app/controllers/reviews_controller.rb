@@ -16,23 +16,26 @@ class ReviewsController < ApplicationController
 
   def edit
     @podcast = Podcast.find(params[:podcast_id])
-    @review = Review.find(params[:id])
-    @new_review = @review
+    @edit_review = Review.find(params[:id])
+    @new_review = @edit_review
     @reviews = @podcast.reviews
     render :'/podcasts/show'
   end
 
   def update
-    @review = Review.find(params[:id])
-    @new_review = Review.new(review_params)
-    @new_review.podcast = @podcast
-    @new_review.user = current_user
+    @edit_review = Review.find(params[:id])
     @podcast = Podcast.find(params[:podcast_id])
-    if @review.update(review_params)
+    if @edit_review.update(review_params)
       flash[:notice] = "Review updated successfully"
+      @new_review = Review.new(review_params)
+      @new_review.podcast = @podcast
+      @new_review.user = current_user
       redirect_to podcast_path(@podcast)
     else
-      flash.now[:notice] = "Review not updated"
+      flash.now[:notice] = @edit_review.errors.full_messages.to_sentence
+      @podcast = Podcast.find(params[:podcast_id])
+      @reviews = @podcast.reviews.order("updated_at DESC").all
+      @edit_review = @podcast.reviews.find(params[:id])
       render :'/podcasts/show'
     end
   end
