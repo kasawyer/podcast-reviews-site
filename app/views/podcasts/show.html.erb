@@ -2,11 +2,21 @@
 <h1><%= @podcast.name %></h1>
 
 <ul class="podcast-info">
+
   <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
 
   <% if @podcast.image_url %>
   <li>
     <img src="<%=@podcast.image_url%>"/>
+  </li>
+  <% end %>
+
+  <% if !@podcast.categories.empty? %>
+  <li>
+    Categories:
+    <% @podcast.categories.each do |category| %>
+    <%= category.name %>
+    <% end %>
   </li>
   <% end %>
 
@@ -30,16 +40,6 @@
   </li>
   <% end %>
 
-
-  <% if !@podcast.categories.empty? %>
-  <li>
-    Categories:
-    <% @podcast.categories.each do |category| %>
-    <%= category.name %>
-    <% end %>
-  </li>
-  <% end %>
-
   <% if @podcast.itunes_url %>
   <li>
     <%= "Listen on iTunes: #{@podcast.itunes_url}" %>
@@ -52,7 +52,49 @@
   </li>
   <% end %>
 </ul>
+
 <%= link_to "Edit", edit_podcast_path(@podcast) %><br />
 <%= link_to "Delete", @podcast, method: :delete,
   data: { confirm: 'Are you sure?' } %><br />
+
+<% if !@review.nil?%>
+  <h2>Edit review:</h2>
+<% else %>
+  <h2>Add a review:</h2>
+<% end %>
+<%= form_for [@podcast, @new_review] do |f| %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Review" %>
+    <%= f.text_area :body %>
+  </div>
+  <% if !@review.nil?%>
+    <div class="actions">
+      <%= f.submit "Submit review"%>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= f.submit "Add review"%>
+    </div>
+  <% end %>
+<% end %>
+<br/>
+
+<% if @reviews %>
+  <h2>Reviews:</h2>
+  <ul>
+  <% @reviews.each do |review| %>
+    <li>
+      <%= "#{review.rating}: #{review.body}" %>
+      <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= link_to "Back to podcasts", podcasts_path %>
