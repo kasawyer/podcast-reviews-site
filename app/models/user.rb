@@ -7,6 +7,7 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable
 
   has_many :podcasts
+  has_many :reviews
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
