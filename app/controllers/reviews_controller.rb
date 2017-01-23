@@ -4,14 +4,17 @@ class ReviewsController < ApplicationController
     @new_review = Review.new(review_params)
     @new_review.podcast = @podcast
     @new_review.user = current_user
-
-    if @new_review.save
-      flash[:notice] = "Review added successfully"
-      redirect_to podcast_path(@podcast)
-    else
-      flash.now[:notice] = @new_review.errors.full_messages.to_sentence
-      render :'/podcasts/show'
+    binding.pry
+    if user_signed_in?
+      if @new_review.save
+        flash[:notice] = "Review added successfully"
+        redirect_to podcast_path(@podcast)
+      else
+        flash.now[:notice] = @new_review.errors.full_messages.to_sentence
+      end
+    else flash[:notice] = "User must be signed in!"
     end
+    render :'/podcasts/show'
   end
 
   def edit
@@ -19,6 +22,12 @@ class ReviewsController < ApplicationController
     @edit_review = Review.find(params[:id])
     @new_review = @edit_review
     @reviews = @podcast.reviews
+    binding.pry
+    if current_user = @edit_review.user
+      flash[:notice] = "Editing review..."
+    else
+      flash[:notice] = "Only authorized user can edit review!"
+    end
     render :'/podcasts/show'
   end
 

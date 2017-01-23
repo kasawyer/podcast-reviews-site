@@ -55,7 +55,6 @@ class PodcastsController < ApplicationController
     @podcast = Podcast.find(params[:id])
     @categories = Category.order(name: :asc)
     if current_user = @podcast.user
-
     else
       flash.now[:notice] = "Only authorized user can edit podcast!"
       redirect :index
