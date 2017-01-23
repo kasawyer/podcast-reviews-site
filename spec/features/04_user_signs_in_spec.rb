@@ -17,19 +17,15 @@ feature "User creates an account" do
   end
 
   scenario "user tries to create an account with an unavailable email" do
-    User.create!(
-      name: "Chewy",
-      email: "rk2211@gmail.com",
-      password: "chewbacca"
-    )
+    FactoryGirl.create(:user)
 
     visit "/"
     click_on "Sign up"
 
     fill_in "Name", with: "Chewy"
-    fill_in "Email", with: "rk2211@gmail.com"
-    fill_in "Password", with: "chewbacca"
-    fill_in "Password confirmation", with: "chewbacca"
+    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "password"
     click_button "Sign up"
 
     expect(page).to have_content "Email has already been taken"
@@ -61,17 +57,13 @@ feature "User creates an account" do
   end
 
   scenario "user can sign in again after creating an account" do
-    User.create!(
-      name: "Chewy",
-      email: "rk2211@gmail.com",
-      password: "chewbacca"
-    )
+    FactoryGirl.create(:user)
 
     visit "/"
     click_on "Sign in"
 
-    fill_in "Email", with: "rk2211@gmail.com"
-    fill_in "Password", with: "chewbacca"
+    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Password", with: "password"
 
     click_button "Sign in"
 
@@ -81,17 +73,13 @@ feature "User creates an account" do
   end
 
   scenario "user can sign out" do
-    User.create!(
-      name: "Chewy",
-      email: "rk2211@gmail.com",
-      password: "chewbacca"
-    )
+    FactoryGirl.create(:user)
 
     visit "/"
     click_on "Sign in"
 
-    fill_in "Email", with: "rk2211@gmail.com"
-    fill_in "Password", with: "chewbacca"
+    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Password", with: "password"
 
     click_button "Sign in"
 

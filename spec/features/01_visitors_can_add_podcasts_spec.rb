@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 feature 'visitors can add podcasts' do
-  let!(:comedy) { Category.create(name: 'Comedy') }
-  let!(:documentary) { Category.create(name: 'Documentary') }
+  let!(:comedy) { FactoryGirl.create(:category) }
+  let!(:documentary) { FactoryGirl.create(:category, name: 'Documentary') }
 
   scenario 'visitor adds new podcast successfully' do
     visit new_podcast_path
@@ -67,8 +67,7 @@ feature 'visitors can add podcasts' do
   end
 
   scenario 'user submits duplicate podcast-provider pair' do
-    npr = Provider.create!(name: 'NPR')
-    Podcast.create!(name: 'This American Life', provider: npr)
+    FactoryGirl.create(:podcast)
 
     visit new_podcast_path
     fill_in 'Name', with: 'This American Life'

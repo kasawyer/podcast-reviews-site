@@ -22,11 +22,19 @@ class ReviewsController < ApplicationController
     @edit_review = Review.find(params[:id])
     @new_review = @edit_review
     @reviews = @podcast.reviews
+<<<<<<< HEAD
     binding.pry
     if current_user = @edit_review.user
       flash[:notice] = "Editing review..."
     else
       flash[:notice] = "Only authorized user can edit review!"
+=======
+    @host_names = []
+    if !@podcast.hosts.empty?
+      @podcast.hosts.each do |host|
+        @host_names << host.name
+      end
+>>>>>>> master
     end
     render :'/podcasts/show'
   end
@@ -45,6 +53,12 @@ class ReviewsController < ApplicationController
       @podcast = Podcast.find(params[:podcast_id])
       @reviews = @podcast.reviews.order("updated_at DESC").all
       @edit_review = @podcast.reviews.find(params[:id])
+      @host_names = []
+      if !@podcast.hosts.empty?
+        @podcast.hosts.each do |host|
+          @host_names << host.name
+        end
+      end
       render :'/podcasts/show'
     end
   end

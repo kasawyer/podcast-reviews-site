@@ -5,6 +5,12 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params[:id])
+    @host_names = []
+    if !@podcast.hosts.empty?
+      @podcast.hosts.each do |host|
+        @host_names << host.name
+      end
+    end
     if @edit_review.nil?
       @new_review = Review.new
     end
