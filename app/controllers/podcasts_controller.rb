@@ -5,6 +5,7 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params[:id])
+    binding.pry
     if @edit_review.nil?
       @new_review = Review.new
     end
