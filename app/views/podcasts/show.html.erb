@@ -98,7 +98,7 @@
   <h2>Reviews:</h2>
   <ul>
   <% @reviews.each do |review| %>
-    <li>
+    <li id="review<%= review.id %>">
       <%= "#{review.rating}: #{review.body}" %>
       <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>

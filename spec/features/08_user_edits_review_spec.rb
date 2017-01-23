@@ -31,7 +31,9 @@ feature 'visitors can edit reviews' do
     expect(page).to have_content 'Add a review:'
     expect(page).to have_content '5: Great podcast!'
 
-    click_on 'Edit'
+    within("#review#{review.id}") do
+      click_on 'Edit'
+    end
 
     expect(page).to have_content 'Edit review:'
 
@@ -51,7 +53,9 @@ feature 'visitors can edit reviews' do
     expect(page).to have_content 'Add a review:'
     expect(page).to have_content '5: Great podcast!'
 
-    click_on 'Edit'
+    within("#review#{review.id}") do
+      click_on 'Edit'
+    end
     expect(page).to have_content 'Edit review:'
 
     fill_in 'Rating', with: ''

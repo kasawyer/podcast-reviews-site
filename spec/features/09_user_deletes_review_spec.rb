@@ -31,7 +31,9 @@ feature 'visitors can edit reviews' do
     expect(page).to have_content 'Add a review:'
     expect(page).to have_content '5: Great podcast!'
 
-    click_on 'Delete'
+    within("#review#{review.id}") do
+      click_on 'Delete'
+    end
 
     expect(page).to have_content 'Add a review:'
     expect(page).not_to have_content '5: Great podcast!'
