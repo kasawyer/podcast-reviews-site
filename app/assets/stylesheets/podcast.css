@@ -1,5 +1,7 @@
 h1 {
   margin: 20px;
+  margin-bottom: 0px;
+  font-size: 40px;
 }
 
 body {
@@ -40,7 +42,7 @@ label {
 }
 
 .podcast-info {
-  margin: 10px;
+  margin: 30px;
   list-style: none;
   font-size: 20px;
 }

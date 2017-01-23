@@ -28,9 +28,7 @@
 
   <% if !@podcast.hosts.empty? %>
   <li> Host(s):
-    <% @podcast.hosts.each do |host| %>
-      <%= host.name %> <br/>
-    <% end %>
+    <%= @host_names.to_sentence %>
   </li>
   <% end %>
 
@@ -53,12 +51,14 @@
   <% end %>
 </ul>
 
-<%= link_to "Edit", edit_podcast_path(@podcast) %><br />
-<%= link_to "Delete", @podcast, method: :delete,
+<div class="edit-delete">
+  <%= link_to "Edit", edit_podcast_path(@podcast) %><br />
+  <%= link_to "Delete", @podcast, method: :delete,
   data: { confirm: 'Are you sure?' } %><br />
+</div>
 
 <% if !@edit_review.nil?%>
-  <h2>Edit review:</h2>
+  <h2>Edit review</h2>
   <%= form_for [@podcast, @edit_review] do |f| %>
     <div class="field">
       <%= f.label :rating %>
@@ -75,7 +75,7 @@
     </div>
   <% end %>
 <% else %>
-  <h2>Add a review:</h2>
+  <h2>Add a review</h2>
   <%= form_for [@podcast, @new_review] do |f| %>
     <div class="field">
       <%= f.label :rating %>
@@ -95,16 +95,25 @@
 <br/>
 
 <% if @reviews %>
-  <h2>Reviews:</h2>
+<div class="reviews">
+  <h2>Reviews</h2>
   <ul>
-  <% @reviews.each do |review| %>
-    <li>
-      <%= "#{review.rating}: #{review.body}" %>
-      <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
+    <% @reviews.each do |review| %>
+    <li class="review-list-item" id="review<%= review.id %>">
+      <%= "Rating: #{review.rating}" %>
+      <div class="user-name">
+        <%= review.user.name %>
+      </div>
+      <%= review.body %><br />
+      <div class="edit-delete">
+        <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
+        <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}",
+        method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     </li>
-  <% end %>
+    <% end %>
   </ul>
+</div>
 <% end %>
 
 <%= link_to "Back to podcasts", podcasts_path %>
