@@ -99,7 +99,7 @@
   <h2>Reviews</h2>
   <ul>
     <% @reviews.each do |review| %>
-    <li class="review-list-item">
+    <li class="review-list-item" id="review<%= review.id %>">
       <%= "Rating: #{review.rating}" %>
       <div class="user-name">
         <%= review.user.name %>
