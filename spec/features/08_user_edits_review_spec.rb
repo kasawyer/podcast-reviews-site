@@ -43,14 +43,7 @@ feature 'visitors can edit reviews' do
       click_on 'Edit'
     end
 
-<<<<<<< HEAD
-    within("#review#{review.id}") do
-      click_on 'Edit'
-    end
-    expect(page).to have_content 'Edit review:'
-=======
     expect(page).to have_content 'Edit review'
->>>>>>> master
 
     fill_in 'Rating', with: ''
     fill_in 'Review', with: ''
