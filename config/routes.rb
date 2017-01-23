@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root "podcasts#index"
+  root 'podcasts#index'
 
-  resources :podcasts, only: [:index, :show, :new, :create]
+  devise_for :users
+
+  resources :podcasts do
+    resources :reviews, only: [:create, :edit, :update, :destroy]
+  end
+
 end

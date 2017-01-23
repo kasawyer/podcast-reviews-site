@@ -6,7 +6,7 @@ feature 'visitors can add podcasts' do
 
   scenario 'visitor adds new podcast successfully' do
     visit new_podcast_path
-    expect(page).to have_content 'Add a podcast:'
+    expect(page).to have_content 'Add a podcast'
 
     within('.name') do
       fill_in 'Name', with: 'Fiesta Parrot'
