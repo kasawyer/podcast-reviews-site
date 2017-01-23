@@ -4,17 +4,16 @@ class ReviewsController < ApplicationController
     @new_review = Review.new(review_params)
     @new_review.podcast = @podcast
     @new_review.user = current_user
-    binding.pry
     if user_signed_in?
       if @new_review.save
         flash[:notice] = "Review added successfully"
         redirect_to podcast_path(@podcast)
       else
         flash.now[:notice] = @new_review.errors.full_messages.to_sentence
+        render :'/podcasts/show'
       end
     else flash[:notice] = "User must be signed in!"
     end
-    render :'/podcasts/show'
   end
 
   def edit
@@ -26,12 +25,13 @@ class ReviewsController < ApplicationController
       flash[:notice] = "Editing review..."
     else
       flash[:notice] = "Only authorized user can edit review!"
-    @host_names = []
-    if !@podcast.hosts.empty?
-      @podcast.hosts.each do |host|
-        @host_names << host.name
-      end
     end
+    @host_names = []
+      if !@podcast.hosts.empty?
+        @podcast.hosts.each do |host|
+          @host_names << host.name
+        end
+      end
     render :'/podcasts/show'
   end
 

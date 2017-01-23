@@ -31,6 +31,7 @@ class PodcastsController < ApplicationController
   def create
     @podcast = Podcast.new(podcast_params)
     @hosts = []
+    @user = current_user
     if user_signed_in?
       podcast_params[:hosts_attributes].each do |_key, host_info|
         if host_info[:name] != ""
@@ -40,6 +41,7 @@ class PodcastsController < ApplicationController
           end
         end
       end
+      @podcast.user = @user
       @podcast.hosts = @hosts
       @podcast.categories = Category.where(id: params[:podcast][:category_ids])
       if @podcast.save

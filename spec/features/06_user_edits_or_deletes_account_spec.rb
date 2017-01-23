@@ -7,7 +7,7 @@ feature "User edits an account" do
     visit "/"
     click_on "Sign in"
 
-    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Email", with: user.email
     fill_in "Password", with: "password"
 
     click_button "Sign in"
@@ -32,7 +32,7 @@ feature "User edits an account" do
     visit "/"
     click_on "Sign in"
 
-    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Email", with: user.email
     fill_in "Password", with: "password"
 
     click_button "Sign in"
@@ -48,7 +48,7 @@ feature "User edits an account" do
     visit "/"
     click_on "Sign in"
 
-    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Email", with: user.email
     fill_in "Password", with: "password"
 
     click_button "Sign in"
@@ -67,7 +67,7 @@ feature "User edits an account" do
     visit "/"
     click_on "Sign in"
 
-    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Email", with: user.email
     fill_in "Password", with: "password"
 
     click_button "Sign in"

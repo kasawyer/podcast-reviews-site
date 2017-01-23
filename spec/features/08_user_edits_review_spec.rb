@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 feature 'visitors can edit reviews' do
-  let!(:review) { FactoryGirl.create(:review) }
+  let!(:user) { FactoryGirl.create(:user, email: 'person1@gmail.com')}
+  let!(:review) { FactoryGirl.create(:review, user: user) }
 
   scenario 'visitor edits review successfully' do
     visit new_user_session_path
 
-    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Email", with: "person1@gmail.com"
     fill_in "Password", with: "password"
 
     click_button "Sign in"
