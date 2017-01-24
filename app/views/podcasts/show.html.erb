@@ -1,9 +1,10 @@
-
 <h1><%= @podcast.name %></h1>
 
 <ul class="podcast-info">
 
-  <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
+  <li>
+    Provider: <%= @podcast.provider.name %>
+  </li>
 
   <% if @podcast.image_url %>
   <li>
@@ -13,44 +14,37 @@
 
   <% if !@podcast.categories.empty? %>
   <li>
-    Categories:
-    <% @podcast.categories.each do |category| %>
-    <%= category.name %>
-    <% end %>
+    Categories: <%= @category_names.to_sentence %>
   </li>
   <% end %>
 
   <% if !@podcast.description.nil? && !@podcast.description.empty? %>
   <li>
-    <%= "Description: #{@podcast.description}" %>
+    Description: <%= @podcast.description %>
   </li>
   <% end %>
 
   <% if !@podcast.hosts.empty? %>
-  <li> Host(s):
-    <% @podcast.hosts.each do |host|%>
-      <%= host.name %>
-    <% end %>
+  <li>
+    Host(s): <%= @host_names.to_sentence %>
   </li>
   <% end %>
 
   <% if @podcast.release_year %>
   <li>
-    <%= "Release year: #{@podcast.release_year}" %>
+    Release year: <%= @podcast.release_year %>
   </li>
   <% end %>
 
-  <% if @podcast.itunes_url %>
+  <% if @podcast.itunes_url != "" %>
   <li>
-    <%= "Listen on iTunes:" %>
-    <%= link_to @podcast.name, @podcast.itunes_url %>
+    <a href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
   </li>
   <% end %>
 
-  <% if @podcast.soundcloud_url %>
+  <% if @podcast.soundcloud_url != "" %>
   <li>
-    <%= "Listen on SoundCloud: " %>
-    <%= link_to @podcast.name, @podcast.soundcloud_url %>
+    <a href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
   </li>
   <% end %>
 </ul>
@@ -61,63 +55,32 @@
   data: { confirm: 'Are you sure?' } %><br />
 </div>
 
-<% if !@edit_review.nil?%>
-  <h2>Edit review</h2>
-  <%= form_for [@podcast, @edit_review] do |f| %>
-    <div class="field">
-      <%= f.label :rating, "Rating (1 - 5)" %>
-      <%= f.text_field :rating %>
-    </div>
+<h2>Add a review</h2>
+<%= form_for [@podcast, @new_review] do |f| %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
 
-    <div class="field">
-      <%= f.label :body, "Review" %>
-      <%= f.text_area :body %>
-    </div>
+  <div class="field">
+    <%= f.label :body, "Review" %>
+    <%= f.text_area :body %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Submit review"%>
-    </div>
-  <% end %>
-<% else %>
-  <h2>Add a review</h2>
-  <%= form_for [@podcast, @new_review] do |f| %>
-    <div class="field">
-      <%= f.label :rating %>
-      <%= f.text_field :rating %>
-    </div>
-
-    <div class="field">
-      <%= f.label :body, "Review" %>
-      <%= f.text_area :body %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Add review"%>
-    </div>
-  <% end %>
+  <div class="actions">
+    <%= f.submit "Add review"%>
+  </div>
 <% end %>
 <br/>
 
-<% if @reviews %>
-<div class="reviews">
-  <h2>Reviews</h2>
-  <ul>
-    <% @reviews.each do |review| %>
-    <li class="review-list-item" id="review<%= review.id %>">
-      <%= "Rating: #{review.rating} / 5" %>
-      <div class="user-name">
-        <%= review.user.name %>
-      </div>
-      <%= review.body %><br />
-      <div class="edit-delete">
-        <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
-        <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}",
-        method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
-    </li>
-    <% end %>
-  </ul>
+<div id="review-list">
+  <input type="hidden" id="podcast-id" value="<%= @podcast.id %>" />
+  <% if current_user %>
+    <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+  <% else %>
+    <input type="hidden" id="current-user-id" value="0" />
+  <% end %>
+  <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
 </div>
-<% end %>
 
 <%= link_to "Back to podcasts", podcasts_path %>
