@@ -63,7 +63,7 @@
   <h2>Edit review</h2>
   <%= form_for [@podcast, @edit_review] do |f| %>
     <div class="field">
-      <%= f.label :rating %>
+      <%= f.label :rating, "Rating (1 - 5)" %>
       <%= f.text_field :rating %>
     </div>
 
@@ -102,7 +102,7 @@
   <ul>
     <% @reviews.each do |review| %>
     <li class="review-list-item" id="review<%= review.id %>">
-      <%= "Rating: #{review.rating}" %>
+      <%= "Rating: #{review.rating} / 5" %>
       <div class="user-name">
         <%= review.user.name %>
       </div>

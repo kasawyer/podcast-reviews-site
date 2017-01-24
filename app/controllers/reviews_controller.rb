@@ -21,18 +21,23 @@ class ReviewsController < ApplicationController
     @edit_review = Review.find(params[:id])
     @new_review = @edit_review
     @reviews = @podcast.reviews
-    flash[:notice] = if current_user == @edit_review.user
+    flash[:notice] = if current_user == @edit_review.user || admin_signed_in?
                        "Editing review..."
                      else
                        "Only authorized user can edit review!"
                      end
+    if current_user == @edit_review.user || admin_signed_in?
+      render :'podcasts/show'
+    else
+      redirect_to '/podcasts/1'
+    end
     @host_names = []
     if !@podcast.hosts.empty?
       @podcast.hosts.each do |host|
         @host_names << host.name
       end
     end
-    render :'/podcasts/show'
+
   end
 
   def update
