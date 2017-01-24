@@ -4,7 +4,7 @@ class Api::V1::VotesController < ApplicationController
   def create
     vote_data = JSON.parse(request.body.read)
     @review = Review.find(params[:review_id])
-    @user = @review.user
+    @user = User.find(vote_data["vote"]["current_user_id"])
     @existing_vote = Vote.find_by(user: @user, review: @review)
     if !@existing_vote.nil?
       @existing_vote.update(value: vote_data["vote"]["value"])

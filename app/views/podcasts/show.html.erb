@@ -57,58 +57,27 @@
 <%= link_to "Delete", @podcast, method: :delete,
   data: { confirm: 'Are you sure?' } %><br />
 
-<% if !@edit_review.nil?%>
-  <h2>Edit review:</h2>
-  <%= form_for [@podcast, @edit_review] do |f| %>
-    <div class="field">
-      <%= f.label :rating %>
-      <%= f.text_field :rating %>
-    </div>
+<h2>Add a review</h2>
+<%= form_for [@podcast, @new_review] do |f| %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
 
-    <div class="field">
-      <%= f.label :body, "Review" %>
-      <%= f.text_area :body %>
-    </div>
+  <div class="field">
+    <%= f.label :body, "Review" %>
+    <%= f.text_area :body %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Submit review"%>
-    </div>
-  <% end %>
-<% else %>
-  <h2>Add a review:</h2>
-  <%= form_for [@podcast, @new_review] do |f| %>
-    <div class="field">
-      <%= f.label :rating %>
-      <%= f.text_field :rating %>
-    </div>
-
-    <div class="field">
-      <%= f.label :body, "Review" %>
-      <%= f.text_area :body %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Add review"%>
-    </div>
-  <% end %>
+  <div class="actions">
+    <%= f.submit "Add review"%>
+  </div>
 <% end %>
 <br/>
 
 <div id="review-list">
   <input type="hidden" id="podcast-id" value="<%= @podcast.id %>" />
+  <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
 </div>
-
-<!-- <% if @reviews %>
-  <h2>Reviews:</h2>
-  <ul>
-  <% @reviews.each do |review| %>
-    <li>
-      <%= "#{review.rating}: #{review.body}" %>
-      <%= link_to "Delete", "/podcasts/#{@podcast.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to "Edit", edit_podcast_review_path(@podcast, review.id), method: :get %>
-    </li>
-  <% end %>
-  </ul>
-<% end %> -->
 
 <%= link_to "Back to podcasts", podcasts_path %>

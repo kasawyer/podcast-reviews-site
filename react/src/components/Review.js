@@ -11,7 +11,8 @@ class Review extends Component {
       total_votes: 0,
       editing: false,
       rating: this.props.review.rating,
-      body: this.props.review.body
+      body: this.props.review.body,
+      message: ""
     };
     this.componentWillMount = this.componentWillMount.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
@@ -19,6 +20,7 @@ class Review extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleRatingChange = this.handleRatingChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.saveEdit = this.saveEdit.bind(this);
   }
 
   componentWillMount() {
@@ -60,7 +62,8 @@ class Review extends Component {
   handleUpvote() {
     let voteData = {
       'vote': {
-        'value': 1
+        'value': 1,
+        'current_user_id': this.props.currentUserId
       }
     };
     let jsonStringData = JSON.stringify(voteData);
@@ -81,6 +84,9 @@ class Review extends Component {
     .then(body => {
       let total_votes = body;
       this.setState({ total_votes: total_votes })
+    })
+    .then(response => {
+      this.props.getReviews();
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -88,7 +94,8 @@ class Review extends Component {
   handleDownvote() {
     let voteData = {
       'vote': {
-        'value': -1
+        'value': -1,
+        'current_user_id': this.props.currentUserId
       }
     };
     let jsonStringData = JSON.stringify(voteData);
@@ -109,6 +116,9 @@ class Review extends Component {
     .then(body => {
       let total_votes = body;
       this.setState({ total_votes: total_votes })
+    })
+    .then(response => {
+      this.props.getReviews();
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -129,19 +139,65 @@ class Review extends Component {
     this.setState({ body: newBody });
   }
 
+  saveEdit(event) {
+    event.preventDefault();
+    let reviewData = {
+      'review': {
+        'rating': this.state.rating,
+        'body': this.state.body
+      }
+    };
+    let jsonStringData = JSON.stringify(reviewData);
+    fetch(`/api/v1/reviews/${this.props.review.id}.json`, {
+      method: 'put',
+      body: jsonStringData
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let review = body.review;
+      let message = body.message;
+      let editing = body.editing;
+      this.setState({
+        rating: review.rating,
+        body: review.body,
+        message: message,
+        editing: editing
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+
   render() {
     let form;
-      if (this.state.editing) {
-        form =
-        <EditForm
-        currentRating={this.state.rating}
-        currentBody={this.state.body}
-        handleRatingChange={this.handleRatingChange}
-        handleBodyChange={this.handleBodyChange}
-        />;
-      }
+    if (this.state.editing && this.props.currentUserId == this.props.review.user_id) {
+      form =
+      <EditForm
+      currentRating={this.state.rating}
+      currentBody={this.state.body}
+      handleRatingChange={this.handleRatingChange}
+      handleBodyChange={this.handleBodyChange}
+      saveEdit={this.saveEdit}
+      />;
+    }
+    let editButton;
+    let deleteButton;
+    if (this.props.currentUserId == this.props.review.user_id) {
+      editButton = <span onClick={() => this.handleEdit()}>Edit</span>;
+      deleteButton = <span onClick={this.props.handleDelete}>Delete</span>;
+    }
     return (
       <div className="review-list-item">
+        <p>{this.state.message}</p>
         <p>Rating: {this.props.review.rating}</p>
         <p>{this.state.user.name}</p>
         <p>{this.props.review.body}</p>
@@ -152,11 +208,9 @@ class Review extends Component {
         <Downvote
         handleDownvote={this.handleDownvote}
         />
-        <p onClick={() => this.handleEdit()}>Edit</p>
-        <p onClick={this.props.handleDelete}>Delete</p>
+        <p>{editButton} {deleteButton}</p>
         {form}
       </div>
-
     );
   }
 }

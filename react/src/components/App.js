@@ -5,7 +5,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
     }
   }
 
@@ -13,6 +12,7 @@ class App extends Component {
     return (
       <ReviewList
       podcastId={document.getElementById('podcast-id').value}
+      currentUserId={document.getElementById('current-user-id').value}
       />
     );
   }

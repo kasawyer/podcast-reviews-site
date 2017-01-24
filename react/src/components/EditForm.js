@@ -9,7 +9,7 @@ const EditForm = props => {
         <input type="text" name="rating" id="review_rating" defaultValue={props.currentRating} onChange={props.handleRatingChange}/>
         <label htmlFor="review_body">Review</label>
         <input type="text" name="body" id="review_body" defaultValue={props.currentBody} onChange={props.handleBodyChange}/>
-        <input type="submit" name="submit" value="Save changes"/>
+        <input type="submit" name="submit" value="Save changes" onClick={props.saveEdit}/>
       </form>
     </div>
   );
