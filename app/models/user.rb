@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :podcasts
   has_many :reviews
+  has_many :votes
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true

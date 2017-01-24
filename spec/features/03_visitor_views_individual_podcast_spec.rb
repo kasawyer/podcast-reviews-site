@@ -17,9 +17,9 @@ feature "User visits a podcast" do
     expect(page).to have_content("Ira Glass")
     expect(page).to have_content("Comedy")
     expect(page).to have_content("2017")
-    expect(page).to have_link("This American Life", href:
+    expect(page).to have_link("Listen on SoundCloud", href:
      'https://soundcloud.com')
-    expect(page).to have_link("This American Life", href:
+    expect(page).to have_link("Listen on iTunes", href:
      'http://www.apple.com/itunes')
   end
 
