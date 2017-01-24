@@ -17,11 +17,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :votes, only: [:update]
       resources :podcasts do
         resources :reviews, only: [:index]
       end
       resources :reviews, only: [:index] do
+        get 'total_votes'
         resources :users, only: [:index]
+        resources :votes, only: [:create]
+        post 'update_votes'
       end
     end
   end
