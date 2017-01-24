@@ -4,8 +4,25 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if current_user.avatar.url.present? %>
+    <div class="avatar-image">
+      <%= image_tag(current_user.avatar.url) %>
+    </div>
+  <% end %>
+
+  <div class="avatar">
+    <%= f.label :avatar, "Select new image to change avatar" %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

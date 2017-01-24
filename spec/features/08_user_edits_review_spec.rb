@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature 'visitors can edit reviews' do
   let!(:user) { FactoryGirl.create(:user, email: 'person1@gmail.com') }
-  let!(:review) { FactoryGirl.create(:review, user: user) }
+  let!(:american) { FactoryGirl.create(:podcast) }
+  let!(:review) { FactoryGirl.create(:review, user: user, podcast: american) }
 
   scenario 'visitor edits review successfully' do
     visit new_user_session_path

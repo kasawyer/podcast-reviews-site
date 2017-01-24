@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature 'visitors can delete reviews' do
   scenario 'visitor deletes review successfully' do
+    american = FactoryGirl.create(:podcast)
     listener = FactoryGirl.create(:user, email: "chewy3@gmail.com")
-    review = FactoryGirl.create(:review, user: listener)
+    review = FactoryGirl.create(:review, user: listener, podcast: american)
+
     visit new_user_session_path
 
     fill_in "Email", with: "chewy3@gmail.com"

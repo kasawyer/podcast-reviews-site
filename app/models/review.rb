@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
+  belongs_to :admin
   belongs_to :podcast
 
   validates :rating, presence: true, numericality: true, inclusion: {
