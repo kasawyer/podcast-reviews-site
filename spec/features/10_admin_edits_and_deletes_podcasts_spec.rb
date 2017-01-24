@@ -6,12 +6,13 @@ feature "user can edit and delete podcasts" do
   let!(:documentary) { FactoryGirl.create(:category, name: "Documentary") }
   let!(:american) { FactoryGirl.create(:podcast) }
   let!(:podcast_host) { PodcastHost.create!(host: ira, podcast: american) }
+  let!(:admin) { FactoryGirl.create(:admin) }
 
-  scenario "user edits a podcast" do
-    visit new_user_session_path
+  scenario "admin edits a podcast" do
+    visit new_admin_session_path
 
-    fill_in "Email", with: "chewy@gmail.com"
-    fill_in "Password", with: "password"
+    fill_in "Email", with: "iamyourson@gmail.com"
+    fill_in "Password", with: "theforce"
 
     click_button "Sign in"
 
@@ -46,10 +47,10 @@ feature "user can edit and delete podcasts" do
   end
 
   scenario "user deletes a podcast" do
-    visit new_user_session_path
+    visit new_admin_session_path
 
-    fill_in "Email", with: "chewy@gmail.com"
-    fill_in "Password", with: "password"
+    fill_in "Email", with: "iamyourson@gmail.com"
+    fill_in "Password", with: "theforce"
 
     click_button "Sign in"
 

@@ -6,6 +6,7 @@ class Podcast < ApplicationRecord
   has_many :reviews
   belongs_to :provider
   belongs_to :user
+  belongs_to :admin
   accepts_nested_attributes_for :hosts
 
   validates :name, presence: true

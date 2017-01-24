@@ -30,11 +30,17 @@
       </div>
       <div class="top-bar-right">
         <ul class="menu">
-          <% if user_signed_in? %>
+          <% if admin_signed_in? %>
+            <li>Signed in as <%= current_admin.email %></li>
+            <li><%= link_to "Admin Sign out", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Admin Account settings", edit_user_registration_path, method: :get %></li>
+          <% elsif user_signed_in? %>
             <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
           <% else %>
+            <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
+            <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
             <li><%= link_to "Sign in", new_user_session_path %></li>
             <li><%= link_to "Sign up", new_user_registration_path %></li>
           <% end %>
