@@ -13,6 +13,7 @@ class App extends Component {
       <ReviewList
       podcastId={document.getElementById('podcast-id').value}
       currentUserId={document.getElementById('current-user-id').value}
+      admin={document.getElementById('admin').value}
       />
     );
   }

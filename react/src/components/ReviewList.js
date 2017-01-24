@@ -7,6 +7,7 @@ class ReviewList extends Component {
     this.state = {
       podcastId: parseInt(this.props.podcastId),
       currentUserId: parseInt(this.props.currentUserId),
+      admin: this.props.admin,
       reviews: [],
       message: "",
       refresh: false
@@ -76,6 +77,7 @@ class ReviewList extends Component {
         key={review.id}
         handleDelete={handleDelete}
         currentUserId={this.state.currentUserId}
+        admin={this.state.admin}
         saveEdit={this.saveEdit}
         getReviews={this.getReviews}
         />

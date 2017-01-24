@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     if user_signed_in?
       if @new_review.save
         flash.now[:notice] = "Review added successfully"
-        render :'/podcasts/show'
+        redirect_to podcast_path(@podcast)
       else
         flash.now[:notice] = @new_review.errors.full_messages.to_sentence
         render :'/podcasts/show'

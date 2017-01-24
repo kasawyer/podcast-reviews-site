@@ -11,6 +11,12 @@ class PodcastsController < ApplicationController
         @host_names << host.name
       end
     end
+    @category_names = []
+    if !@podcast.categories.empty?
+      @podcast.categories.each do |category|
+        @category_names << category.name
+      end
+    end
     if @edit_review.nil?
       @new_review = Review.new
     end
@@ -62,7 +68,7 @@ class PodcastsController < ApplicationController
   def edit
     @podcast = Podcast.find(params[:id])
     @categories = Category.order(name: :asc)
-    if current_user == @podcast.user
+    if current_user == @podcast.user || admin_signed_in?
       flash.now[:notice] = "Editing podcast..."
     else
       flash.now[:notice] = "Only authorized user can edit podcast!"
@@ -101,7 +107,7 @@ class PodcastsController < ApplicationController
 
   def destroy
     @podcast = Podcast.find(params[:id])
-    if current_user == @podcast.user
+    if current_user == @podcast.user || admin_signed_in?
       @podcast.destroy
       flash[:notice] = "Podcast was successfully deleted."
       redirect_to podcasts_path

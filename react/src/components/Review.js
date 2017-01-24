@@ -166,6 +166,7 @@ class Review extends Component {
       let review = body.review;
       let message = body.message;
       let editing = body.editing;
+      debugger;
       this.setState({
         rating: review.rating,
         body: review.body,
@@ -179,7 +180,7 @@ class Review extends Component {
 
   render() {
     let form;
-    if (this.state.editing && this.props.currentUserId == this.props.review.user_id) {
+    if (this.state.editing && (this.props.currentUserId == this.props.review.user_id || this.props.admin == 'true')) {
       form =
       <EditForm
       currentRating={this.state.rating}
@@ -191,7 +192,7 @@ class Review extends Component {
     }
     let editButton;
     let deleteButton;
-    if (this.props.currentUserId == this.props.review.user_id) {
+    if (this.props.currentUserId == this.props.review.user_id || this.props.admin == 'true') {
       editButton = <span onClick={() => this.handleEdit()}>Edit</span>;
       deleteButton = <span onClick={this.props.handleDelete}>Delete</span>;
     }

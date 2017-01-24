@@ -3,7 +3,9 @@
 
 <ul class="podcast-info">
 
-  <li> <%= "Provider: #{@podcast.provider.name}" %> </li>
+  <li>
+    Provider: <%= @podcast.provider.name %>
+  </li>
 
   <% if @podcast.image_url %>
   <li>
@@ -13,42 +15,37 @@
 
   <% if !@podcast.categories.empty? %>
   <li>
-    Categories:
-    <% @podcast.categories.each do |category| %>
-    <%= category.name %>
-    <% end %>
+    Categories: <%= @category_names.to_sentence %>
   </li>
   <% end %>
 
   <% if !@podcast.description.nil? && !@podcast.description.empty? %>
   <li>
-    <%= "Description: #{@podcast.description}" %>
+    Description: <%= @podcast.description %>
   </li>
   <% end %>
 
   <% if !@podcast.hosts.empty? %>
-  <li> Host(s):
-    <% @podcast.hosts.each do |host|%>
-      <%= host.name %>
-    <% end %>
+  <li>
+    Host(s): <%= @host_names.to_sentence %>
   </li>
   <% end %>
 
   <% if @podcast.release_year %>
   <li>
-    <%= "Release year: #{@podcast.release_year}" %>
+    Release year: <%= @podcast.release_year %>
   </li>
   <% end %>
 
   <% if @podcast.itunes_url %>
   <li>
-    <%= "Listen on iTunes: #{@podcast.itunes_url}" %>
+    Listen on iTunes: <%= @podcast.itunes_url %>
   </li>
   <% end %>
 
   <% if @podcast.soundcloud_url %>
   <li>
-    <%= "Listen on SoundCloud: #{@podcast.soundcloud_url}" %>
+    Listen on SoundCloud: <%= @podcast.soundcloud_url %>
   </li>
   <% end %>
 </ul>
@@ -79,7 +76,12 @@
 
 <div id="review-list">
   <input type="hidden" id="podcast-id" value="<%= @podcast.id %>" />
-  <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+  <% if current_user %>
+    <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+  <% else %>
+    <input type="hidden" id="current-user-id" value="0" />
+  <% end %>
+  <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
 </div>
 
 <%= link_to "Back to podcasts", podcasts_path %>
