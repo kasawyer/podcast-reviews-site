@@ -28,8 +28,8 @@ end
 
 group :development, :test do
   gem 'capybara'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_girl', require: false
+  gem 'factory_girl_rails', require: false
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails'
