@@ -6,6 +6,7 @@ FactoryGirl.define do
     itunes_url "http://www.apple.com/itunes"
     soundcloud_url "https://soundcloud.com"
 
+    user
     provider
   end
 end

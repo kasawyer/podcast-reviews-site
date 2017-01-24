@@ -8,11 +8,18 @@ feature "user can edit and delete podcasts" do
   let!(:podcast_host) { PodcastHost.create!(host: ira, podcast: american) }
 
   scenario "user edits a podcast" do
+    visit new_user_session_path
+
+    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Password", with: "password"
+
+    click_button "Sign in"
+
     visit "/"
     click_on "This American Life"
     click_on "Edit"
 
-    fill_in "Name", with: "Reply All"
+    fill_in 'Name (required)', with: 'Reply All'
     fill_in "Provider", with: "Gimlet Media"
     fill_in "Description", with: "It's about the internet, and so much more"
     within('.host') do
@@ -39,10 +46,19 @@ feature "user can edit and delete podcasts" do
   end
 
   scenario "user deletes a podcast" do
+    visit new_user_session_path
+
+    fill_in "Email", with: "chewy@gmail.com"
+    fill_in "Password", with: "password"
+
+    click_button "Sign in"
+
     visit "/"
     click_on "This American Life"
     click_on "Delete"
 
-    expect(page).to have_content "Podcast was successfully deleted."
+    visit "/"
+
+    expect(page).not_to have_content "This American Life"
   end
 end

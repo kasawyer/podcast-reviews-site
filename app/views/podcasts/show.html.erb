@@ -28,7 +28,9 @@
 
   <% if !@podcast.hosts.empty? %>
   <li> Host(s):
-    <%= @host_names.to_sentence %>
+    <% @podcast.hosts.each do |host|%>
+      <%= host.name %>
+    <% end %>
   </li>
   <% end %>
 
