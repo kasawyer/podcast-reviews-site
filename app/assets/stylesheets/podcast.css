@@ -2,10 +2,12 @@ h1 {
   margin: 20px;
   margin-bottom: 0px;
   font-size: 40px;
+  color: white;
+  text-align: center;
 }
 
 body {
-  background-color: #D7DAE5;
+  background-color:#413E4A ;
 }
 
 form {
@@ -15,7 +17,7 @@ form {
 input[type="submit"] {
   border: none;
   color: white;
-  background-color: #376996;
+  background-color: #8A8780;
   padding: 8px;
   font-size: 20px;
 }
@@ -28,13 +30,18 @@ label {
   font-size: 20px;
 }
 
+a {
+
+  color:#E47267;
+}
+
 .podcast-index {
   margin: 10px;
   list-style: none;
 }
 
 .podcast-list-item {
-  background-color: #434975;
+  background-color: #D7D8C5;
   margin: 10px;
   color: white;
   padding: 10px;
@@ -46,3 +53,21 @@ label {
   list-style: none;
   font-size: 20px;
 }
+
+.title {
+
+  font-size: 40px;
+  color: #2199E8;
+}
+
+.subtitle {
+
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 50px;
+}
+
+.avatar {
+    padding: 1.0em
+  }
