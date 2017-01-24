@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import Upvote from './Upvote';
 import Downvote from './Downvote';
+import EditForm from './EditForm';
 
 class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: "",
-      total_votes: 0
+      total_votes: 0,
+      editing: false,
+      rating: this.props.review.rating,
+      body: this.props.review.body
     };
     this.componentWillMount = this.componentWillMount.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.handleDownvote = this.handleDownvote.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleRatingChange = this.handleRatingChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
   }
 
   componentWillMount() {
@@ -106,7 +113,33 @@ class Review extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  handleEdit(review_id) {
+    this.setState({
+      editing: true
+    });
+  }
+
+  handleRatingChange(event) {
+    let newRating = event.target.value;
+    this.setState({ rating: newRating });
+  }
+
+  handleBodyChange(event) {
+    let newBody = event.target.value;
+    this.setState({ body: newBody });
+  }
+
   render() {
+    let form;
+      if (this.state.editing) {
+        form =
+        <EditForm
+        currentRating={this.state.rating}
+        currentBody={this.state.body}
+        handleRatingChange={this.handleRatingChange}
+        handleBodyChange={this.handleBodyChange}
+        />;
+      }
     return (
       <div className="review-list-item">
         <p>Rating: {this.props.review.rating}</p>
@@ -119,6 +152,9 @@ class Review extends Component {
         <Downvote
         handleDownvote={this.handleDownvote}
         />
+        <p onClick={() => this.handleEdit()}>Edit</p>
+        <p onClick={this.props.handleDelete}>Delete</p>
+        {form}
       </div>
 
     );
