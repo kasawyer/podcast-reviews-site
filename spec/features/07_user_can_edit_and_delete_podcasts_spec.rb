@@ -41,8 +41,8 @@ feature "user can edit and delete podcasts" do
     expect(page).to have_content "PJ Vogt"
     expect(page).to have_content "Alex Goldman"
     expect(page).to have_content "2015"
-    expect(page).to have_content "https://soundcloud.com/replyall"
-    expect(page).to have_content "https://itunes.apple.com/us/podcast/reply-all"
+    expect(page).to have_link("Reply All", href: 'https://soundcloud.com/replyall')
+    expect(page).to have_link("Reply All", href: 'https://itunes.apple.com/us/podcast/reply-all')
   end
 
   scenario "user deletes a podcast" do

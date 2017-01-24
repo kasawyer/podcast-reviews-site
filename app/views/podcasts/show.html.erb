@@ -42,13 +42,15 @@
 
   <% if @podcast.itunes_url %>
   <li>
-    <%= "Listen on iTunes: #{@podcast.itunes_url}" %>
+    <%= "Listen on iTunes:" %>
+    <%= link_to @podcast.name, @podcast.itunes_url %>
   </li>
   <% end %>
 
   <% if @podcast.soundcloud_url %>
   <li>
-    <%= "Listen on SoundCloud: #{@podcast.soundcloud_url}" %>
+    <%= "Listen on SoundCloud: " %>
+    <%= link_to @podcast.name, @podcast.soundcloud_url %>
   </li>
   <% end %>
 </ul>

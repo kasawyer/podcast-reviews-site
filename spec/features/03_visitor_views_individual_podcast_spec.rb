@@ -17,8 +17,10 @@ feature "User visits a podcast" do
     expect(page).to have_content("Ira Glass")
     expect(page).to have_content("Comedy")
     expect(page).to have_content("2017")
-    expect(page).to have_content("https://soundcloud.com")
-    expect(page).to have_content("http://www.apple.com/itunes")
+    expect(page).to have_link("This American Life", href:
+     'https://soundcloud.com')
+    expect(page).to have_link("This American Life", href:
+     'http://www.apple.com/itunes')
   end
 
   scenario "Link to index page" do
