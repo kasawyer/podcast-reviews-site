@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "admin can edit and delete podcasts" do
+feature "admin can edit and delete reviews" do
   let!(:ira) { FactoryGirl.create(:host) }
   let!(:comedy) { FactoryGirl.create(:category) }
   let!(:documentary) { FactoryGirl.create(:category, name: "Documentary") }
@@ -11,7 +11,7 @@ feature "admin can edit and delete podcasts" do
     FactoryGirl.create(:review, user: american.user, podcast: american)
   end
 
-  scenario "admin edits a podcast" do
+  xscenario "admin edits a review" do
     visit new_admin_session_path
 
     fill_in "Email", with: "iamyourson@gmail.com"
@@ -35,7 +35,7 @@ feature "admin can edit and delete podcasts" do
     expect(page).to have_content "4"
   end
 
-  scenario "admin deletes a podcast" do
+  xscenario "admin deletes a review" do
     visit new_admin_session_path
 
     fill_in "Email", with: "iamyourson@gmail.com"

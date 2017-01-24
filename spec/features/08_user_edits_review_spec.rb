@@ -5,7 +5,7 @@ feature 'visitors can edit reviews' do
   let!(:american) { FactoryGirl.create(:podcast) }
   let!(:review) { FactoryGirl.create(:review, user: user, podcast: american) }
 
-  scenario 'visitor edits review successfully' do
+  xscenario 'visitor edits review successfully' do
     visit new_user_session_path
 
     fill_in "Email", with: "person1@gmail.com"
@@ -34,7 +34,7 @@ feature 'visitors can edit reviews' do
     expect(page).to have_content 'Pretty good podcast!'
   end
 
-  scenario 'visitor does not provide necessary information for review update' do
+  xscenario 'visitor does not provide necessary info for review update' do
     visit new_user_session_path
 
     fill_in "Email", with: "person1@gmail.com"

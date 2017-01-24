@@ -1,4 +1,3 @@
-
 <h1><%= @podcast.name %></h1>
 
 <ul class="podcast-info">
@@ -37,15 +36,15 @@
   </li>
   <% end %>
 
-  <% if @podcast.itunes_url %>
+  <% if @podcast.itunes_url != "" %>
   <li>
-    Listen on iTunes: <%= @podcast.itunes_url %>
+    <a href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
   </li>
   <% end %>
 
-  <% if @podcast.soundcloud_url %>
+  <% if @podcast.soundcloud_url != "" %>
   <li>
-    Listen on SoundCloud: <%= @podcast.soundcloud_url %>
+    <a href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
   </li>
   <% end %>
 </ul>

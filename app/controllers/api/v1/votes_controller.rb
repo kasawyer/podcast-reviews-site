@@ -11,7 +11,11 @@ class Api::V1::VotesController < ApplicationController
       @total_votes = @review.total_votes
       render json: @total_votes
     else
-      @vote = Vote.new(review: @review, user: @user, value: vote_data["vote"]["value"])
+      @vote = Vote.new(
+        review: @review,
+        user: @user,
+        value: vote_data["vote"]["value"]
+      )
       if @vote.save
         @total_votes = @review.total_votes
         render json: @total_votes

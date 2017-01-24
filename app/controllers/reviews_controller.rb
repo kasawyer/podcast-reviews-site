@@ -10,6 +10,18 @@ class ReviewsController < ApplicationController
         redirect_to podcast_path(@podcast)
       else
         flash.now[:notice] = @new_review.errors.full_messages.to_sentence
+        @host_names = []
+        if !@podcast.hosts.empty?
+          @podcast.hosts.each do |host|
+            @host_names << host.name
+          end
+        end
+        @category_names = []
+        if !@podcast.categories.empty?
+          @podcast.categories.each do |category|
+            @category_names << category.name
+          end
+        end
         render :'/podcasts/show'
       end
     else flash[:notice] = "User must be signed in!"

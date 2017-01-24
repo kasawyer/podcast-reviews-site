@@ -3,7 +3,7 @@ class Api::V1::ReviewsController < ApplicationController
 
   def index
     @podcast = Podcast.find(params[:podcast_id])
-    @reviews = @podcast.reviews.sort_by{ |review| review.total_votes }.reverse
+    @reviews = @podcast.reviews.sort_by { |review| review.total_votes }.reverse
     render json: @reviews
   end
 
@@ -15,10 +15,21 @@ class Api::V1::ReviewsController < ApplicationController
   def update
     review_data = JSON.parse(request.body.read)
     @review = Review.find(params[:id])
-    if @review.update(rating: review_data["review"]["rating"], body: review_data["review"]["body"])
-      render json: { review: @review, message: "Review updated successfully", editing: false }
+    if @review.update(
+      rating: review_data["review"]["rating"],
+      body: review_data["review"]["body"]
+    )
+      render json: {
+        review: @review,
+        message: "Review updated successfully",
+        editing: false
+      }
     else
-      render json: { review: @review, message: @review.errors.full_messages.to_sentence, editing: true }
+      render json: {
+        review: @review,
+        message: @review.errors.full_messages.to_sentence,
+        editing: true
+      }
     end
   end
 
