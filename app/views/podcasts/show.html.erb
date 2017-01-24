@@ -28,8 +28,8 @@
 
   <% if !@podcast.hosts.empty? %>
   <li> Host(s):
-    <% @podcast.hosts.each do |host| %>
-      <%= host.name %> <br/>
+    <% @podcast.hosts.each do |host|%>
+      <%= host.name %>
     <% end %>
   </li>
   <% end %>
@@ -53,9 +53,11 @@
   <% end %>
 </ul>
 
-<%= link_to "Edit", edit_podcast_path(@podcast) %><br />
-<%= link_to "Delete", @podcast, method: :delete,
+<div class="edit-delete">
+  <%= link_to "Edit", edit_podcast_path(@podcast) %><br />
+  <%= link_to "Delete", @podcast, method: :delete,
   data: { confirm: 'Are you sure?' } %><br />
+</div>
 
 <h2>Add a review</h2>
 <%= form_for [@podcast, @new_review] do |f| %>

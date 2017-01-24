@@ -5,6 +5,12 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params[:id])
+    @host_names = []
+    if !@podcast.hosts.empty?
+      @podcast.hosts.each do |host|
+        @host_names << host.name
+      end
+    end
     if @edit_review.nil?
       @new_review = Review.new
     end
@@ -25,22 +31,29 @@ class PodcastsController < ApplicationController
   def create
     @podcast = Podcast.new(podcast_params)
     @hosts = []
-    podcast_params[:hosts_attributes].each do |_key, host_info|
-      if host_info[:name] != ""
-        host = Host.find_or_create_by(name: host_info[:name])
-        if !host.id.nil?
-          @hosts.push(host)
+    @user = current_user
+    if user_signed_in?
+      podcast_params[:hosts_attributes].each do |_key, host_info|
+        if host_info[:name] != ""
+          host = Host.find_or_create_by(name: host_info[:name])
+          if !host.id.nil?
+            @hosts.push(host)
+          end
         end
       end
-    end
-
-    @podcast.hosts = @hosts
-    @podcast.categories = Category.where(id: params[:podcast][:category_ids])
-    if @podcast.save
-      flash[:notice] = "Podcast added successfully"
-      redirect_to podcast_path(@podcast)
+      @podcast.user = @user
+      @podcast.hosts = @hosts
+      @podcast.categories = Category.where(id: params[:podcast][:category_ids])
+      if @podcast.save
+        flash[:notice] = "Podcast added successfully"
+        redirect_to podcast_path(@podcast)
+      else
+        flash.now[:notice] = @podcast.errors.full_messages.to_sentence
+        @categories = Category.order(name: :asc)
+        render :new
+      end
     else
-      flash.now[:notice] = @podcast.errors.full_messages.to_sentence
+      flash.now[:notice] = "User must be signed in!"
       @categories = Category.order(name: :asc)
       render :new
     end
@@ -49,6 +62,12 @@ class PodcastsController < ApplicationController
   def edit
     @podcast = Podcast.find(params[:id])
     @categories = Category.order(name: :asc)
+    if current_user == @podcast.user
+      flash.now[:notice] = "Editing podcast..."
+    else
+      flash.now[:notice] = "Only authorized user can edit podcast!"
+      render :index
+    end
   end
 
   def update
@@ -82,9 +101,13 @@ class PodcastsController < ApplicationController
 
   def destroy
     @podcast = Podcast.find(params[:id])
-    @podcast.destroy
-    flash[:notice] = "Podcast was successfully deleted."
-    redirect_to podcasts_path
+    if current_user == @podcast.user
+      @podcast.destroy
+      flash[:notice] = "Podcast was successfully deleted."
+      redirect_to podcasts_path
+    else
+      flash.now[:notice] = "You must be authorized user to delete podcast!"
+    end
   end
 
   private

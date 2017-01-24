@@ -198,9 +198,9 @@ class Review extends Component {
     return (
       <div className="review-list-item">
         <p>{this.state.message}</p>
-        <p>Rating: {this.props.review.rating}</p>
+        <p>Rating: {this.state.rating}</p>
         <p>{this.state.user.name}</p>
-        <p>{this.props.review.body}</p>
+        <p>{this.state.body}</p>
         <p>{this.state.total_votes}</p>
         <Upvote
         handleUpvote={this.handleUpvote}

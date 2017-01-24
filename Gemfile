@@ -2,9 +2,12 @@ source 'https://rubygems.org/'
 
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
+gem 'dotenv-rails'
+gem 'fog-aws'
 gem 'font-awesome-rails'
 gem 'foundation-rails'
 gem 'jquery-rails'
+gem 'mini_magick'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.0'
@@ -26,11 +29,12 @@ end
 
 group :development, :test do
   gem 'capybara'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_girl', require: false
+  gem 'factory_girl_rails', require: false
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'

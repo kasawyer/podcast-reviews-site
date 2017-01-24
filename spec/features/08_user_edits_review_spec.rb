@@ -1,39 +1,27 @@
 require 'rails_helper'
 
 feature 'visitors can edit reviews' do
-  let! (:npr) { Provider.create(name: "NPR") }
-  let! (:fresh_air) { Podcast.create(name: "Fresh Air", provider: npr) }
-  let! (:user) do
-    User.create(
-      email: "person@gmail.com",
-      password: "password",
-      name: "Person"
-    )
-  end
-  let! (:review) do
-    Review.create(
-      rating: 5,
-      body: "Great podcast!",
-      user: user,
-      podcast: fresh_air
-    )
-  end
+  let!(:user) { FactoryGirl.create(:user, email: 'person1@gmail.com') }
+  let!(:review) { FactoryGirl.create(:review, user: user) }
 
   scenario 'visitor edits review successfully' do
     visit new_user_session_path
 
-    fill_in "Email", with: "person@gmail.com"
+    fill_in "Email", with: "person1@gmail.com"
     fill_in "Password", with: "password"
 
     click_button "Sign in"
 
-    visit podcast_path(fresh_air)
-    expect(page).to have_content 'Add a review:'
-    expect(page).to have_content '5: Great podcast!'
+    visit podcast_path(review.podcast)
+    expect(page).to have_content 'Add a review'
+    expect(page).to have_content '5'
+    expect(page).to have_content 'Great podcast!'
 
-    click_on 'Edit'
+    within("#review#{review.id}") do
+      click_on 'Edit'
+    end
 
-    expect(page).to have_content 'Edit review:'
+    expect(page).to have_content 'Edit review'
 
     fill_in 'Rating', with: 4
     fill_in 'Review', with: 'Pretty good podcast!'
@@ -46,13 +34,17 @@ feature 'visitors can edit reviews' do
   end
 
   scenario 'visitor does not provide necessary information for review update' do
-    visit podcast_path(fresh_air)
+    visit podcast_path(review.podcast)
 
-    expect(page).to have_content 'Add a review:'
-    expect(page).to have_content '5: Great podcast!'
+    expect(page).to have_content 'Add a review'
+    expect(page).to have_content '5'
+    expect(page).to have_content 'Great podcast!'
 
-    click_on 'Edit'
-    expect(page).to have_content 'Edit review:'
+    within("#review#{review.id}") do
+      click_on 'Edit'
+    end
+
+    expect(page).to have_content 'Edit review'
 
     fill_in 'Rating', with: ''
     fill_in 'Review', with: ''

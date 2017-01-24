@@ -1,10 +1,17 @@
 require 'rails_helper'
 
 feature 'visitors can add podcasts' do
-  let!(:comedy) { Category.create(name: 'Comedy') }
-  let!(:documentary) { Category.create(name: 'Documentary') }
+  let!(:comedy) { FactoryGirl.create(:category) }
+  let!(:documentary) { FactoryGirl.create(:category, name: 'Documentary') }
+  let!(:podcast) { FactoryGirl.create(:podcast) }
 
   scenario 'visitor adds new podcast successfully' do
+    visit '/'
+    click_on "Sign in"
+    fill_in 'Email', with: "chewy@gmail.com"
+    fill_in 'Password', with: "password"
+    click_button 'Sign in'
+
     visit new_podcast_path
     expect(page).to have_content 'Add a podcast'
 
@@ -30,6 +37,12 @@ feature 'visitors can add podcasts' do
   end
 
   scenario "user submits a podcast with the name 'Howard Stern Show'" do
+    visit '/'
+    click_on "Sign in"
+    fill_in 'Email', with: "chewy@gmail.com"
+    fill_in 'Password', with: "password"
+    click_button 'Sign in'
+
     visit new_podcast_path
     within('.name') do
       fill_in 'Name', with: 'Howard Stern Show'
@@ -50,6 +63,12 @@ feature 'visitors can add podcasts' do
   end
 
   scenario 'visitor does not provide proper information for a podcast' do
+    visit '/'
+    click_on "Sign in"
+    fill_in 'Email', with: "chewy@gmail.com"
+    fill_in 'Password', with: "password"
+    click_button 'Sign in'
+
     visit new_podcast_path
 
     click_button 'Add podcast'
@@ -58,6 +77,12 @@ feature 'visitors can add podcasts' do
   end
 
   scenario 'user submits an incomplete entry with no provider' do
+    visit '/'
+    click_on "Sign in"
+    fill_in 'Email', with: "chewy@gmail.com"
+    fill_in 'Password', with: "password"
+    click_button 'Sign in'
+
     visit new_podcast_path
     fill_in 'Name', with: 'Howard Stern Show'
     click_button 'Add podcast'
@@ -67,8 +92,11 @@ feature 'visitors can add podcasts' do
   end
 
   scenario 'user submits duplicate podcast-provider pair' do
-    npr = Provider.create!(name: 'NPR')
-    Podcast.create!(name: 'This American Life', provider: npr)
+    visit '/'
+    click_on "Sign in"
+    fill_in 'Email', with: "chewy@gmail.com"
+    fill_in 'Password', with: "password"
+    click_button 'Sign in'
 
     visit new_podcast_path
     fill_in 'Name', with: 'This American Life'
