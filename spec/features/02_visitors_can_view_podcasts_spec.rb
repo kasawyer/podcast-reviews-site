@@ -7,8 +7,12 @@ feature "user visits home page" do
     listener1 = FactoryGirl.create(:user, email: "chewy1@gmail.com")
     listener2 = FactoryGirl.create(:user, email: "chewy2@gmail.com")
     FactoryGirl.create(:podcast)
-    FactoryGirl.create(:podcast, name: "Reply All", user: listener1, provider: gimlet)
-    FactoryGirl.create(:podcast, name: "Fiesta Parrot", user: listener2, provider: launch)
+    FactoryGirl.create(:podcast, name: "Reply All", user: listener1, provider:
+     gimlet)
+    FactoryGirl.create(:podcast,
+      name: "Fiesta Parrot",
+      user: listener2,
+      provider: launch)
 
     visit "/podcasts"
 

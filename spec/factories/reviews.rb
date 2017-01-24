@@ -3,7 +3,8 @@ FactoryGirl.define do
     rating 5
     body "Great podcast!"
 
-    user User.create!(name: "Person", email: "person@gmail.com", password: "password")
+    user User.create!(name: "Person", email: "person@gmail.com", password:
+     "password")
     podcast
   end
 end

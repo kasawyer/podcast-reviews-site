@@ -3,7 +3,6 @@ require 'rails_helper'
 feature 'visitors can add reviews' do
   let!(:american) { FactoryGirl.create(:podcast) }
 
-
   scenario 'visitor adds new review successfully' do
     visit new_user_session_path
 
@@ -44,6 +43,7 @@ feature 'visitors can add reviews' do
 
     click_button 'Add review'
 
-    expect(page).to have_content "Rating can't be blank, Rating is not a number, Rating must be between 1 - 5, and Body can't be blank"
+    expect(page).to have_content "Rating can't be blank, Rating is not a\
+     number, Rating must be between 1 - 5, and Body can't be blank"
   end
 end

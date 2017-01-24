@@ -21,17 +21,17 @@ class ReviewsController < ApplicationController
     @edit_review = Review.find(params[:id])
     @new_review = @edit_review
     @reviews = @podcast.reviews
-    if current_user = @edit_review.user
-      flash[:notice] = "Editing review..."
-    else
-      flash[:notice] = "Only authorized user can edit review!"
-    end
+    flash[:notice] = if current_user == @edit_review.user
+                       "Editing review..."
+                     else
+                       "Only authorized user can edit review!"
+                     end
     @host_names = []
-      if !@podcast.hosts.empty?
-        @podcast.hosts.each do |host|
-          @host_names << host.name
-        end
+    if !@podcast.hosts.empty?
+      @podcast.hosts.each do |host|
+        @host_names << host.name
       end
+    end
     render :'/podcasts/show'
   end
 

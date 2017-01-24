@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'visitors can edit reviews' do
-  let!(:user) { FactoryGirl.create(:user, email: 'person1@gmail.com')}
+  let!(:user) { FactoryGirl.create(:user, email: 'person1@gmail.com') }
   let!(:review) { FactoryGirl.create(:review, user: user) }
 
   scenario 'visitor edits review successfully' do
