@@ -66,7 +66,7 @@ class PodcastsController < ApplicationController
       flash.now[:notice] = "Editing podcast..."
     else
       flash.now[:notice] = "Only authorized user can edit podcast!"
-      redirect :index
+      render :index
     end
   end
 

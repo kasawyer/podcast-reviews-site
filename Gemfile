@@ -33,6 +33,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
