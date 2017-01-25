@@ -5,7 +5,7 @@ feature 'visitors can add podcasts' do
   let!(:documentary) { FactoryGirl.create(:category, name: 'Documentary') }
   let!(:podcast) { FactoryGirl.create(:podcast) }
 
-  scenario 'visitor adds new podcast successfully' do
+  xscenario 'visitor adds new podcast successfully' do
     visit '/'
     click_on "Sign in"
     fill_in 'Email', with: "chewy@gmail.com"
