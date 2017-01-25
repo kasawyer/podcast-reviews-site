@@ -8,8 +8,7 @@ class Podcast extends Component {
     this.state = {
       provider: ""
     };
-    this.componentWillMount = this.componentWillMount.bind(this);
-    this.componentWillUpdate = this.componentWillUpdate.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.getProvider = this.getProvider.bind(this);
   }
 
@@ -32,12 +31,9 @@ class Podcast extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getProvider();
-  }
-
-  componentWillUpdate() {
-    this.getProvider();
+    let wait = setInterval(this.getProvider, 10000);
   }
 
   render() {
