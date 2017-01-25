@@ -11,6 +11,12 @@ class PodcastsController < ApplicationController
         @host_names << host.name
       end
     end
+    @category_names = []
+    if !@podcast.categories.empty?
+      @podcast.categories.each do |category|
+        @category_names << category.name
+      end
+    end
     if @edit_review.nil?
       @new_review = Review.new
     end

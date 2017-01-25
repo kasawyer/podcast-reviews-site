@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'visitors can delete reviews' do
+xfeature 'visitors can delete reviews' do
   scenario 'visitor deletes review successfully' do
     american = FactoryGirl.create(:podcast)
     listener = FactoryGirl.create(:user, email: "chewy3@gmail.com")
