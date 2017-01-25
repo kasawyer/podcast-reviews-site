@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "user visits home page" do
-  scenario "user sees names of all podcasts" do
+  xscenario "user sees names of all podcasts" do
     launch = FactoryGirl.create(:provider, name: "Launch Academy")
     gimlet = FactoryGirl.create(:provider, name: "Gimlet Media")
     listener1 = FactoryGirl.create(:user, email: "chewy1@gmail.com")
