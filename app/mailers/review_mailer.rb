@@ -1,5 +1,4 @@
 class ReviewMailer < ApplicationMailer
-
   def new_review_email(review)
     @new_review = review
 

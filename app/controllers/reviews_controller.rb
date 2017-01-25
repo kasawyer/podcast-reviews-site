@@ -6,28 +6,26 @@ class ReviewsController < ApplicationController
     @new_review.podcast.user = @podcast.user
     @new_review.user = current_user
     if user_signed_in?
-      # respond_to do |format|
-        if @new_review.save
-          ReviewMailer.new_review_email(@new_review).deliver_later
-          flash.now[:notice] = "Review added successfully"
-          redirect_to podcast_path(@podcast)
-        else
-          flash.now[:notice] = @new_review.errors.full_messages.to_sentence
-          @host_names = []
-          if !@podcast.hosts.empty?
-            @podcast.hosts.each do |host|
-              @host_names << host.name
-            end
+      if @new_review.save
+        ReviewMailer.new_review_email(@new_review).deliver_later
+        flash.now[:notice] = "Review added successfully"
+        redirect_to podcast_path(@podcast)
+      else
+        flash.now[:notice] = @new_review.errors.full_messages.to_sentence
+        @host_names = []
+        if !@podcast.hosts.empty?
+          @podcast.hosts.each do |host|
+            @host_names << host.name
           end
-          @category_names = []
-          if !@podcast.categories.empty?
-            @podcast.categories.each do |category|
-              @category_names << category.name
-            end
-          end
-          render :'/podcasts/show'
         end
-      # end
+        @category_names = []
+        if !@podcast.categories.empty?
+          @podcast.categories.each do |category|
+            @category_names << category.name
+          end
+        end
+        render :'/podcasts/show'
+      end
     else flash[:notice] = "User must be signed in!"
     end
   end
