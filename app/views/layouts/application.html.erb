@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Podcast Reviews" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "CastHub" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -15,26 +15,32 @@
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text"><a href="/">Podcast Reviews</a></li>
+          <li class="menu-text title"><a href="/">Podcast Your Votes</a></li>
           <li>
-            <a href="#">Add...</a>
+            <a href="#"></a>
             <ul class="menu vertical">
-              <li><a href="#">Podcast</a></li>
-              <li><a href="#">Review</a></li>
+              <li><a href="/podcasts/new">Add Podcast</a></li>
+              <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
+              <li><a href="https://www.itunes.com">iTunes</a></li>
             </ul>
           </li>
-          <li><a href="#">Top Podcasts</a></li>
-          <li><a href="#">Soundcloud</a></li>
-          <li><a href="#">iTunes</a></li>
+
         </ul>
       </div>
       <div class="top-bar-right">
         <ul class="menu">
           <% if admin_signed_in? %>
+            <% if !current_admin.avatar.url.nil? %>
+              <li><%= image_tag current_admin.avatar.url(:thumb) %></li>
+            <% end %>
             <li>Signed in as <%= current_admin.email %></li>
             <li><%= link_to "Admin Sign out", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "Admin Account settings", edit_user_registration_path, method: :get %></li>
           <% elsif user_signed_in? %>
+            <% if !current_user.avatar.url.nil? %>
+              <li class="avatar"><%= image_tag current_user.avatar.url(:thumb) %></li>
+            <% end %>
+            <li></li>
             <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>

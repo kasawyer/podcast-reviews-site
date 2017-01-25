@@ -80,7 +80,7 @@ class ReviewList extends Component {
         handleDelete={handleDelete}
         currentUserId={this.state.currentUserId}
         admin={this.state.admin}
-        saveEdit={this.saveEdit}
+        // saveEdit={this.saveEdit}
         getReviews={this.getReviews}
         />
       );

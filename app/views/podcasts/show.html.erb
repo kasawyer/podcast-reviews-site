@@ -1,7 +1,6 @@
 <h1><%= @podcast.name %></h1>
 
 <ul class="podcast-info">
-
   <li>
     Provider: <%= @podcast.provider.name %>
   </li>
@@ -49,11 +48,12 @@
   <% end %>
 </ul>
 
-<div class="edit-delete">
-  <%= link_to "Edit", edit_podcast_path(@podcast) %><br />
-  <%= link_to "Delete", @podcast, method: :delete,
-  data: { confirm: 'Are you sure?' } %><br />
-</div>
+  <div class="edit-delete">
+    <%= link_to "Edit", edit_podcast_path(@podcast) %><br />
+    <%= link_to "Delete", @podcast, method: :delete,
+    data: { confirm: 'Are you sure?' } %><br />
+  </div>
+</li>
 
 <h2>Add a review</h2>
 <%= form_for [@podcast, @new_review] do |f| %>
