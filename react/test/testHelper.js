@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import { shallow, mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
