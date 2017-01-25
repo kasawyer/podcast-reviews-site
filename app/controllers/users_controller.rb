@@ -20,10 +20,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
-    # NEEDS TO HANDLE AVATAR
-  end
-
   private
 
   def user_params

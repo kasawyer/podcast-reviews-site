@@ -168,7 +168,6 @@ class Review extends Component {
       let review = body.review;
       let message = body.message;
       let editing = body.editing;
-      debugger;
       this.setState({
         rating: review.rating,
         body: review.body,
