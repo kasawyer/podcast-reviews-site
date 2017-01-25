@@ -9,8 +9,11 @@ class Podcast extends Component {
       provider: ""
     };
     this.componentWillMount = this.componentWillMount.bind(this);
+    this.componentWillUpdate = this.componentWillUpdate.bind(this);
+    this.getProvider = this.getProvider.bind(this);
   }
-  componentWillMount() {
+
+  getProvider() {
     fetch(`/api/v1/podcasts/${this.props.podcast.id}/providers.json`)
     .then(response => {
       if (response.ok) {
@@ -27,6 +30,14 @@ class Podcast extends Component {
       this.setState({ provider: provider });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentWillMount() {
+    this.getProvider();
+  }
+
+  componentWillUpdate() {
+    this.getProvider();
   }
 
   render() {
