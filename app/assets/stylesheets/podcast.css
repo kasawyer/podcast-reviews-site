@@ -34,19 +34,13 @@ a {
   color:#E47267;
 }
 
-
-
-.podcast-index {
-  margin: 10px;
-  list-style: none;
-}
-
 .podcast-list-item {
   background-color: #D7D8C5;
   margin: 10px;
   color: #E47267;
   padding: 10px;
   font-size: 20px;
+  list-style: none;
 }
 
 .podcast-name {
