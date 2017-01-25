@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi <%= @new_review.podcast.user.name %>,</p>
+    <p>
+      <%= @new_review.user.name %> left a review on your podcast, <%= @new_review.podcast.name %>:
+    </p>
+    <p>
+      "<%= @new_review.rating %>: <%= @new_review.body %>"
+    </p>
+    <p>
+      To view this review on the site, click <%= link_to 'here', podcast_url(@new_review.podcast) %>.
+    </p>
+    <p>Podcast away!</p>
+  </body>
+</html>

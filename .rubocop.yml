@@ -281,4 +281,4 @@ Metrics/AbcSize:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context', 'scenario', 'feature']
+  ExcludedMethods: ['describe', 'context', 'scenario', 'feature', 'configure']

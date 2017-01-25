@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'visitors can add reviews' do
+
   let!(:american) { FactoryGirl.create(:podcast) }
 
   xscenario 'visitor adds new review successfully' do
@@ -25,6 +26,7 @@ feature 'visitors can add reviews' do
     expect(page).to have_content '5'
     expect(page).to have_content 'Such a great podcast!'
     expect(page).to have_content 'Chewy'
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 
   scenario 'visitor does not provide necessary information for review' do

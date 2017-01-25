@@ -30,6 +30,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+    ActionMailer::Base.deliveries.clear
   end
 
   config.before(:each, js: true) do
