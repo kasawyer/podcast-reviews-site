@@ -31,9 +31,10 @@ label {
 }
 
 a {
-
   color:#E47267;
 }
+
+
 
 .podcast-index {
   margin: 10px;
@@ -42,6 +43,18 @@ a {
 
 .podcast-list-item {
   background-color: #D7D8C5;
+  margin: 10px;
+  color: #E47267;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.podcast-name {
+  font-weight: 600;
+}
+
+.podcast-list-item:hover {
+  background-color: #8A8780;
   margin: 10px;
   color: white;
   padding: 10px;

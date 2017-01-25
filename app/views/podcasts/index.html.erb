@@ -1,13 +1,3 @@
 <%= button_to "Add a podcast", new_podcast_path, method: :get %>
 <h1>All Podcasts</h1>
-<ul class="podcast-index">
-  <% if !@podcasts.nil? %>
-    <% @podcasts.each do |podcast| %>
-      <li class="podcast-list-item">
-        <img src="<%= podcast.image_url %>"/>
-        <%= link_to podcast.name, podcast %> <br/>
-        <%= podcast.provider.name %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+<div id="podcast-list"/>
