@@ -20,6 +20,6 @@ class Podcast < ApplicationRecord
   end
 
   def self.search(search)
-    where("name ILIKE ?", "%#{search}%")
+    where("name ILIKE ?", "%#{search}%", "%#{search}%")
   end
 end
