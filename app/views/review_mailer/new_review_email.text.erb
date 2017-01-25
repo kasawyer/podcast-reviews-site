@@ -1,0 +1,9 @@
+Hi <%= @new_review.podcast.user.name %>,
+
+<%= @new_review.user.name %> left a review on your podcast, <%= @new_review.podcast.name %>:
+
+<%= @new_review.body %>
+
+To view this review on the site, click <%= link_to 'here', podcast_url(@new_review.podcast) %>.
+
+Podcast away!
