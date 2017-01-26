@@ -22,7 +22,7 @@ input[type="submit"], .edit-delete {
   background-color: #8A8780;
   padding: 8px;
   font-size: 20px;
-  margin: 5px;
+  /*margin: 5px;*/
 }
 
 .edit-delete:hover {
@@ -40,6 +40,7 @@ label {
 
 a {
   color:#E47267;
+  font-size: 20px;
 }
 
 .search-results, .flash {

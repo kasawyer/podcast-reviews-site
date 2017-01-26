@@ -5,15 +5,18 @@
 .review-list-item {
   background-color: #D7D8C5;
   list-style: none;
-  margin: 10px;
   font-size: 18px;
+}
+
+.review-list-item .edit-delete {
+  margin: 5px;
 }
 
 .edit-delete a {
   background-color: #376996;
   color: white;
   padding: 5px;
-  margin: 5px;
+  /*margin: 5px;*/
   margin-top: 10px;
   border-radius: 5px;
 }
@@ -39,7 +42,6 @@
 
 .review-body p {
   margin: 5px;
-
 }
 
 .edit-review label, .edit-review h2 {

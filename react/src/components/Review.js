@@ -220,6 +220,7 @@ class Review extends Component {
             {this.state.rating}
           </p>
           <p>{this.state.body}</p>
+          <br/>
           <span className="edit-delete">{editButton}</span>
           <span className="edit-delete">{deleteButton}</span>
           {form}
