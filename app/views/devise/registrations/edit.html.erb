@@ -13,7 +13,7 @@
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true %>
   </div>
-  
+
   <% if current_admin.avatar.url.present? %>
     <div class="avatar-image">
       <%= image_tag(current_admin.avatar.url) %>
