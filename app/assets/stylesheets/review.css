@@ -3,19 +3,47 @@
 }
 
 .review-list-item {
-  background-color: #95B8D1;
-  border-radius: 10px;
+  background-color: #D7D8C5;
   list-style: none;
-  padding: 10px;
-  border: 3px solid #376996;
-  margin: 10px;
+  font-size: 18px;
+}
+
+.review-list-item .edit-delete {
+  margin: 5px;
 }
 
 .edit-delete a {
   background-color: #376996;
   color: white;
   padding: 5px;
-  margin: 5px;
+  /*margin: 5px;*/
   margin-top: 10px;
   border-radius: 5px;
+}
+
+.vote-buttons {
+  width: 5%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  padding: 20px;
+}
+
+.vote-buttons p {
+  margin: 5px;
+  padding: 6px;
+}
+
+.review-body {
+  width: 95%;
+  display: inline-block;
+  padding: 10px;
+}
+
+.review-body p {
+  margin: 5px;
+}
+
+.edit-review label, .edit-review h2 {
+  color: black;
 }
