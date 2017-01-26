@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin do
-  let!(:admin) { FactoryGirl.create(:admin ) }
+  let!(:admin) { FactoryGirl.create(:admin) }
 
   describe ".new" do
     it "has a name" do

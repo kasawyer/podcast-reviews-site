@@ -9,7 +9,8 @@ describe Podcast do
     end
 
     it "has a description" do
-      expect(podcast.description).to eq("Ira Glass doing what he does best - telling us great stories.")
+      expect(podcast.description).to eq("Ira Glass doing what he does best - \
+      telling us great stories.")
     end
 
     it "has a release year" do
