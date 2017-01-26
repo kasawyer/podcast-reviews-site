@@ -1,0 +1,19 @@
+<div class="page-body">
+  <h1>All Users</h1>
+
+  <ul>
+    <% @users.each do |user| %>
+      <div>
+        <%= user.name %>
+      </div>
+      <div>
+        <%= user.email %>
+      </div>
+      <div>
+        <%= link_to "DELETE", user_path(user.id), method: :delete,
+        data: { confirm: 'Are you sure?' }, class: "edit-delete" %>
+      </div>
+      <br/>
+    <% end %>
+  </ul>
+</div>
