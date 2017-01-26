@@ -21,7 +21,7 @@ describe Podcast do
     end
 
     it "has a soundcloud url" do
-      expect(podcast.soundcloud_url).to eq("http://soundcloud.com")
+      expect(podcast.soundcloud_url).to eq("https://soundcloud.com")
     end
   end
 end
