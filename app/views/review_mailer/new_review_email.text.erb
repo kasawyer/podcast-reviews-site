@@ -4,6 +4,6 @@ Hi <%= @new_review.podcast.user.name %>,
 
 <%= @new_review.body %>
 
-To view this review on the site, click <%= link_to 'here', podcast_url(@new_review.podcast) %>.
+To view this review on the site, click <%= link_to 'here', "http://podcastaway.herokuapp.com/podcasts/#{@new_review.podcast}" %>.
 
 Podcast away!
