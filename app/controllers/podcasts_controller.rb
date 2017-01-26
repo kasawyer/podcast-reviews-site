@@ -1,6 +1,11 @@
 class PodcastsController < ApplicationController
   def index
     @podcasts = Podcast.all
+    if params[:search]
+      @podcasts = Podcast.search(params[:search]).order("created_at DESC")
+    else
+      @podcasts = []
+    end
   end
 
   def show

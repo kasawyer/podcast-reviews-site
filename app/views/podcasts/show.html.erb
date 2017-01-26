@@ -1,86 +1,87 @@
-<h1><%= @podcast.name %></h1>
+<div class="show-page">
+  <h1><%= @podcast.name %></h1>
 
-<ul class="podcast-info">
-  <li>
-    Provider: <%= @podcast.provider.name %>
-  </li>
+  <ul class="podcast-info">
+    <li>
+      <span class="prompt">Provider:</span> <%= @podcast.provider.name %>
+    </li>
 
-  <% if @podcast.image_url %>
-  <li>
-    <img src="<%=@podcast.image_url%>"/>
-  </li>
+    <% if @podcast.image_url %>
+    <li>
+      <img src="<%=@podcast.image_url%>"/>
+    </li>
+    <% end %>
+
+    <% if !@podcast.categories.empty? %>
+    <li>
+      <span class="prompt">Categories:</span> <%= @category_names.to_sentence %>
+    </li>
+    <% end %>
+
+    <% if !@podcast.description.nil? && !@podcast.description.empty? %>
+    <li>
+      <span class="prompt">Description:</span> <%= @podcast.description %>
+    </li>
+    <% end %>
+
+    <% if !@podcast.hosts.empty? %>
+    <li>
+      <span class="prompt">Host(s):</span> <%= @host_names.to_sentence %>
+    </li>
+    <% end %>
+
+    <% if @podcast.release_year %>
+    <li>
+      <span class="prompt">Release year:</span> <%= @podcast.release_year %>
+    </li>
+    <% end %>
+
+    <% if @podcast.itunes_url != "" %>
+    <li>
+      <a href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
+    </li>
+    <% end %>
+
+    <% if @podcast.soundcloud_url != "" %>
+    <li>
+      <a href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
+    </li>
+    <% end %>
+  </ul>
+
+  <br/>
+  <%= link_to "Edit", edit_podcast_path(@podcast), class: "edit-delete" %>
+  <%= link_to "Delete", @podcast, method: :delete,
+  data: { confirm: 'Are you sure?' }, class: "edit-delete" %>
+
+  <h1>Reviews</h1>
+  <h2>Add a review</h2>
+  <%= form_for [@podcast, @new_review] do |f| %>
+    <div class="field">
+      <%= f.label :rating %>
+      <%= f.text_field :rating %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body, "Review" %>
+      <%= f.text_area :body %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Add review"%>
+    </div>
   <% end %>
+  <br/>
 
-  <% if !@podcast.categories.empty? %>
-  <li>
-    Categories: <%= @category_names.to_sentence %>
-  </li>
-  <% end %>
-
-  <% if !@podcast.description.nil? && !@podcast.description.empty? %>
-  <li>
-    Description: <%= @podcast.description %>
-  </li>
-  <% end %>
-
-  <% if !@podcast.hosts.empty? %>
-  <li>
-    Host(s): <%= @host_names.to_sentence %>
-  </li>
-  <% end %>
-
-  <% if @podcast.release_year %>
-  <li>
-    Release year: <%= @podcast.release_year %>
-  </li>
-  <% end %>
-
-  <% if @podcast.itunes_url != "" %>
-  <li>
-    <a href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
-  </li>
-  <% end %>
-
-  <% if @podcast.soundcloud_url != "" %>
-  <li>
-    <a href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
-  </li>
-  <% end %>
-</ul>
-
-  <div class="edit-delete">
-    <%= link_to "Edit", edit_podcast_path(@podcast) %><br />
-    <%= link_to "Delete", @podcast, method: :delete,
-    data: { confirm: 'Are you sure?' } %><br />
+  <div id="review-list">
+    <input type="hidden" id="podcast-id" value="<%= @podcast.id %>" />
+    <% if current_user %>
+      <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+    <% else %>
+      <input type="hidden" id="current-user-id" value="0" />
+    <% end %>
+    <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
   </div>
-</li>
 
-<h2>Add a review</h2>
-<%= form_for [@podcast, @new_review] do |f| %>
-  <div class="field">
-    <%= f.label :rating %>
-    <%= f.text_field :rating %>
-  </div>
-
-  <div class="field">
-    <%= f.label :body, "Review" %>
-    <%= f.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Add review"%>
-  </div>
-<% end %>
-<br/>
-
-<div id="review-list">
-  <input type="hidden" id="podcast-id" value="<%= @podcast.id %>" />
-  <% if current_user %>
-    <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
-  <% else %>
-    <input type="hidden" id="current-user-id" value="0" />
-  <% end %>
-  <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
+  <%= link_to "Back to podcasts", podcasts_path %>
 </div>
-
-<%= link_to "Back to podcasts", podcasts_path %>

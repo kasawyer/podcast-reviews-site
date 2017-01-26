@@ -6,20 +6,27 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  margin-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
 body {
   background-color:#606D80;
 }
 
-form {
-  margin: 30px;
-}
-
-input[type="submit"] {
+input[type="submit"], .edit-delete {
   border: none;
   color: white;
   background-color: #8A8780;
   padding: 8px;
   font-size: 20px;
+  /*margin: 5px;*/
+}
+
+.edit-delete:hover {
+  color: white;
 }
 
 input[type="text"], textarea {
@@ -28,17 +35,18 @@ input[type="text"], textarea {
 
 label {
   font-size: 20px;
+  color: white;
 }
 
 a {
   color:#E47267;
+  font-size: 20px;
 }
 
-
-
-.podcast-index {
-  margin: 10px;
-  list-style: none;
+.search-results, .flash {
+  color: white;
+  font-size: 24px;
+  margin: 25px;
 }
 
 .podcast-list-item {
@@ -47,6 +55,7 @@ a {
   color: #E47267;
   padding: 10px;
   font-size: 20px;
+  list-style: none;
 }
 
 .podcast-name {
@@ -62,25 +71,31 @@ a {
 }
 
 .podcast-info {
-  margin: 30px;
   list-style: none;
   font-size: 20px;
+  background-color: #D7D8C5;
+  padding: 20px;
+  margin: 0px;
 }
 
 .title {
-
   font-size: 40px;
   color: #2199E8;
 }
 
-.subtitle {
-
-  font-style: italic;
-  font-family: "Times New Roman", Times, serif;
-  text-align: center;
-  font-size: 50px;
-}
-
 .avatar {
     padding: 1.0em
-  }
+}
+
+.show-page {
+  margin: 20px;
+}
+
+.prompt {
+  font-weight: bold;
+}
+
+#search, .search-button {
+  display: inline-block;
+  margin-right: 0px;
+}
