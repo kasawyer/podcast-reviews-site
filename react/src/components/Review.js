@@ -188,8 +188,8 @@ class Review extends Component {
     let editButton;
     let deleteButton;
     if (this.props.currentUserId == this.props.review.user_id || this.props.admin == 'true') {
-      editButton = <span onClick={() => this.handleEdit()}>Edit</span>;
-      deleteButton = <span onClick={this.props.handleDelete}>Delete</span>;
+      editButton = <span className="edit-delete" onClick={() => this.handleEdit()}>Edit</span>;
+      deleteButton = <span className="edit-delete" onClick={this.props.handleDelete}>Delete</span>;
     }
     return (
       <div className="review-list-item">
@@ -214,9 +214,9 @@ class Review extends Component {
             {this.state.rating}
           </p>
           <p>{this.state.body}</p>
+          {editButton}
+          {deleteButton}
           <br/>
-          <span className="edit-delete">{editButton}</span>
-          <span className="edit-delete">{deleteButton}</span>
           {form}
         </div>
       </div>
