@@ -26,7 +26,7 @@ feature "user searches podcasts" do
 
   scenario "user searches for a term with multiple matches" do
     visit "/"
-    fill_in "Search Podcasts", with: "life"
+    fill_in "Search podcasts", with: "life"
     click_on "Search"
 
     expect(page).to have_content "This American Life"
@@ -36,7 +36,7 @@ feature "user searches podcasts" do
 
   scenario "user searches for a term with no matches" do
     visit "/"
-    fill_in "Search Podcasts", with: "chewbacca"
+    fill_in "Search podcasts", with: "chewbacca"
     click_on "Search"
 
     expect(page).to have_content "No results matched your search."
