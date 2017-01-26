@@ -54,21 +54,23 @@
   <% end %>
 
   <h1>Reviews</h1>
-  <h2>Add a review</h2>
-  <%= form_for [@podcast, @new_review] do |f| %>
-    <div class="field">
-      <%= f.label :rating %>
-      <%= f.text_field :rating %>
-    </div>
+  <% if current_user || current_admin %>
+    <h2>Add a review</h2>
+    <%= form_for [@podcast, @new_review] do |f| %>
+      <div class="field">
+        <%= f.label :rating %>
+        <%= f.text_field :rating %>
+      </div>
 
-    <div class="field">
-      <%= f.label :body, "Review" %>
-      <%= f.text_area :body %>
-    </div>
+      <div class="field">
+        <%= f.label :body, "Review" %>
+        <%= f.text_area :body %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit "Add review"%>
-    </div>
+      <div class="actions">
+        <%= f.submit "Add review"%>
+      </div>
+    <% end %>
   <% end %>
   <br/>
 
