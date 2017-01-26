@@ -73,9 +73,7 @@ class PodcastsController < ApplicationController
   def edit
     @podcast = Podcast.find(params[:id])
     @categories = Category.order(name: :asc)
-    if current_user == @podcast.user || admin_signed_in?
-      flash.now[:notice] = "Editing podcast..."
-    else
+    if current_user != @podcast.user && !admin_signed_in?
       flash.now[:notice] = "Only authorized user can edit podcast!"
       render :index
     end

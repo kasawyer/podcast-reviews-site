@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :users, only: [:index, :destroy]
+
   resources :podcasts do
     resources :reviews, only: [:index, :create]
   end

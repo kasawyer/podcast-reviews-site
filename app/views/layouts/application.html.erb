@@ -14,19 +14,9 @@
   <body>
     <div class="top-bar">
       <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text title"><a href="/">Podcastaway</a></li>
-          <li>
-            <a href="#"></a>
-            <ul class="menu vertical">
-              <li><a href="/podcasts/new">Add Podcast</a></li>
-              <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
-              <li><a href="https://www.itunes.com">iTunes</a></li>
-            </ul>
-          </li>
-
-        </ul>
+      <span class="menu-text title"><a href="/">Podcastaway</a></span>
       </div>
+
       <div class="top-bar-right">
         <ul class="menu">
           <% if admin_signed_in? %>
@@ -36,6 +26,7 @@
             <li>Signed in as <%= current_admin.email %></li>
             <li><%= link_to "Admin Sign out", destroy_admin_session_path, method: :delete %></li>
             <li><%= link_to "Admin Account settings", edit_admin_registration_path, method: :get %></li>
+            <li><%= link_to "Edit User List", users_path, method: :get %></li>
           <% elsif user_signed_in? %>
             <% if !current_user.avatar.url.nil? %>
               <li class="avatar"><%= image_tag current_user.avatar.url(:thumb) %></li>
@@ -43,7 +34,6 @@
             <li></li>
             <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
           <% else %>
             <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
             <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
@@ -51,11 +41,24 @@
             <li><%= link_to "Sign up", new_user_registration_path %></li>
           <% end %>
           <li>
-          <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search Podcasts" %>
-            <%= submit_tag "Search", name: nil, class: "search-button" %>
-          <% end %>
-        </li>
+            <ul class="dropdown menu" data-dropdown-menu>
+              <li>
+                <a href="#">Menu</a>
+                <ul class="menu vertical">
+                  <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
+                  <li><a href="/podcasts/new">Add Podcast</a></li>
+                  <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
+                  <li><a href="https://www.itunes.com">iTunes</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>  
+          <li>
+            <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
+              <%= submit_tag "Search", name: nil, class: "search-button" %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
