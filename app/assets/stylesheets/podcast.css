@@ -117,9 +117,20 @@ a {
   font-weight: bold;
 }
 
-#search, .search-button {
-  display: inline-block;
+#search {
+  vertical-align: top;
+  display: inline;
+  margin-top: 5px;
   margin-right: 0px;
+  margin-left: 10px;
+}
+
+.search-button {
+  vertical-align: top;
+  display: inline;
+  margin-top: 5px;
+  margin-right: 0px;
+  height: 39px;
 }
 
 .cancel {

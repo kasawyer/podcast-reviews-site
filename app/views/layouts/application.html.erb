@@ -59,8 +59,10 @@
           </li>
           <li>
             <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
-              <%= submit_tag "Search", name: nil, class: "search-button" %>
+              <div class="search-container">
+                <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
+                <%= submit_tag "Search", name: nil, class: "search-button" %>
+              </div>
             <% end %>
           </li>
         </ul>
