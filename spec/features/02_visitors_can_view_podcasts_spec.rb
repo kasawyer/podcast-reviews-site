@@ -24,8 +24,7 @@ feature "user visits home page" do
     expect(page).to have_content "Launch Academy"
   end
 
-  xscenario "podcasts are listed in descending order based on most recent
-    reviews" do
+  xscenario "podcasts are listed in alphabetical order" do
 
   end
 end
