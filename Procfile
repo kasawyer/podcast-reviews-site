@@ -1,1 +1,1 @@
-web: node app.js
+web: node /react/src/main.js
