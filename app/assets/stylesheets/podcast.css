@@ -68,7 +68,7 @@ a {
   margin: 30px;
 }
 
-.podcast-index {
+.page-body {
   margin: 30px;
 }
 
@@ -120,4 +120,8 @@ a {
 #search, .search-button {
   display: inline-block;
   margin-right: 0px;
+}
+
+.cancel {
+  margin-top: 10px;
 }

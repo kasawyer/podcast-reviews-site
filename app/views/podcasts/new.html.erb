@@ -1,57 +1,59 @@
-<h1 class= "subtitle">Add a podcast</h1>
+<div class="page-body">
+  <h1 class= "subtitle">Add a podcast</h1>
 
-<%= form_for(@podcast) do |f| %>
-  <div class="name">
-    <%= f.label :name, "Name (required)" %>
-    <%= f.text_field :name %>
+  <%= form_for(@podcast) do |f| %>
+    <div class="name">
+      <%= f.label :name, "Name (required)" %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :provider_name, "Provider (required)" %>
+      <%= f.text_field :provider_name, value: @podcast.provider.name%>
+    </div>
+
+    <div class="area">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="host">
+      <%= f.label :name, "Host" %>
+      <%= f.fields_for :hosts, @podcast.hosts.build do |hosts_fields| %>
+        <%= hosts_fields.text_field :name, value: @podcast.hosts[0].name %>
+      <% end %>
+        <%= f.label :name, "Additional host" %>
+      <%= f.fields_for :hosts, @podcast.hosts.build do |hosts_fields| %>
+        <%= hosts_fields.text_field :name, value: @podcast.hosts[1].name %>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :release_year%>
+      <%= f.text_field :release_year %>
+    </div>
+
+    <div class="field">
+      <%= f.label :soundcloud_url, "SoundCloud link"%>
+      <%= f.text_field :soundcloud_url %>
+    </div>
+
+    <div class="field">
+      <%= f.label :itunes_url, "iTunes link"%>
+      <%= f.text_field :itunes_url %>
+    </div>
+
+    <div class="check-boxes">
+      <%= f.label :category_ids, "Categories" %>
+      <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
+    </div>
+
+    <div class="actions create-podcast">
+      <%= f.submit "Add podcast" %>
+    </div>
+  <% end %>
+
+  <div class="actions cancel">
+    <%= button_to "Cancel", podcasts_path, method: :get %>
   </div>
-
-  <div class="field">
-    <%= f.label :provider_name, "Provider (required)" %>
-    <%= f.text_field :provider_name, value: @podcast.provider.name%>
-  </div>
-
-  <div class="area">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="host">
-    <%= f.label :name, "Host" %>
-    <%= f.fields_for :hosts, @podcast.hosts.build do |hosts_fields| %>
-      <%= hosts_fields.text_field :name, value: @podcast.hosts[0].name %>
-    <% end %>
-      <%= f.label :name, "Additional host" %>
-    <%= f.fields_for :hosts, @podcast.hosts.build do |hosts_fields| %>
-      <%= hosts_fields.text_field :name, value: @podcast.hosts[1].name %>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :release_year%>
-    <%= f.text_field :release_year %>
-  </div>
-
-  <div class="field">
-    <%= f.label :soundcloud_url, "SoundCloud link"%>
-    <%= f.text_field :soundcloud_url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :itunes_url, "iTunes link"%>
-    <%= f.text_field :itunes_url %>
-  </div>
-
-  <div class="check-boxes">
-    <%= f.label :category_ids, "Categories" %>
-    <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Add podcast" %>
-  </div>
-<% end %>
-
-<div class="actions">
-  <%= button_to "Cancel", podcasts_path, method: :get %>
 </div>
