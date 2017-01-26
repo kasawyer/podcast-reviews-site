@@ -14,18 +14,8 @@
   <body>
     <div class="top-bar">
       <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text title"><a href="/">Podcastaway</a></li>
-          <li>
-            <a href="#"></a>
-            <ul class="menu vertical">
-              <li><a href="/podcasts/new">Add Podcast</a></li>
-              <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
-              <li><a href="https://www.itunes.com">iTunes</a></li>
-            </ul>
-          </li>
+      <span class="menu-text title"><a href="/">Podcastaway</a></span>
 
-        </ul>
       </div>
       <div class="top-bar-right">
         <ul class="menu">
@@ -43,7 +33,23 @@
             <li></li>
             <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
+
+
+            <li>
+            <ul class="dropdown menu" data-dropdown-menu>
+
+              <li>
+                <a href="#">Menu</a>
+                <ul class="menu vertical">
+                  <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
+                  <li><a href="/podcasts/new">Add Podcast</a></li>
+                  <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
+                  <li><a href="https://www.itunes.com">iTunes</a></li>
+                </ul>
+              </li>
+
+            </ul>
+          </li>
           <% else %>
             <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
             <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
