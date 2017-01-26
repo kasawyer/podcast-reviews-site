@@ -18,4 +18,8 @@ class Podcast < ApplicationRecord
   def provider_name=(name)
     self.provider = Provider.find_or_create_by(name: name)
   end
+
+  def self.search(search)
+    where("name ILIKE ?", "%#{search}%")
+  end
 end
