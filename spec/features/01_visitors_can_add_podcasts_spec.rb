@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'visitors can add podcasts' do
+feature 'visitors can add new podcasts' do
   let!(:comedy) { FactoryGirl.create(:category) }
   let!(:documentary) { FactoryGirl.create(:category, name: 'Documentary') }
   let!(:podcast) { FactoryGirl.create(:podcast) }
