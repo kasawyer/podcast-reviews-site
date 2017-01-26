@@ -15,8 +15,8 @@
     <div class="top-bar">
       <div class="top-bar-left">
       <span class="menu-text title"><a href="/">Podcastaway</a></span>
-
       </div>
+
       <div class="top-bar-right">
         <ul class="menu">
           <% if admin_signed_in? %>
@@ -33,11 +33,14 @@
             <li></li>
             <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-
-
-            <li>
+          <% else %>
+            <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
+            <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% end %>
+          <li>
             <ul class="dropdown menu" data-dropdown-menu>
-
               <li>
                 <a href="#">Menu</a>
                 <ul class="menu vertical">
@@ -47,21 +50,14 @@
                   <li><a href="https://www.itunes.com">iTunes</a></li>
                 </ul>
               </li>
-
             </ul>
-          </li>
-          <% else %>
-            <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
-            <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
-            <li><%= link_to "Sign in", new_user_session_path %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-          <% end %>
+          </li>  
           <li>
-          <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
-            <%= submit_tag "Search", name: nil, class: "search-button" %>
-          <% end %>
-        </li>
+            <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
+              <%= submit_tag "Search", name: nil, class: "search-button" %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>

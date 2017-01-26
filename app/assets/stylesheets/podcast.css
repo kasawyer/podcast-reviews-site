@@ -7,7 +7,6 @@
 .title a {
   font-size: 40px;
   color: #E47267;
-  padding: 0px;
 }
 
 body {
@@ -66,7 +65,7 @@ a {
 .search-results, .flash {
   color: white;
   font-size: 24px;
-  /*margin: 25px;*/
+  margin: 30px;
 }
 
 .podcast-index {
