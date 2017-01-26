@@ -4,7 +4,7 @@ import React from 'react';
 
 const Upvote = props => {
   return(
-    <i className="fa fa-arrow-up" aria-hidden="true" onClick={() => props.handleUpvote()}></i>
+    <i className="fa fa-arrow-up fa-2x" aria-hidden="true" onClick={() => props.handleUpvote()}></i>
   );
 }
 
