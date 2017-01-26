@@ -9,7 +9,6 @@ class PodcastList extends Component {
     this.state = {
       podcasts: []
     };
-
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getPodcasts = this.getPodcasts.bind(this);
   }

@@ -3,9 +3,11 @@ class ReviewsController < ApplicationController
     @podcast = Podcast.find(params[:podcast_id])
     @new_review = Review.new(review_params)
     @new_review.podcast = @podcast
+    @new_review.podcast.user = @podcast.user
     @new_review.user = current_user
     if user_signed_in?
       if @new_review.save
+        ReviewMailer.new_review_email(@new_review).deliver_later
         flash.now[:notice] = "Review added successfully"
         redirect_to podcast_path(@podcast)
       else
