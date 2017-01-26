@@ -3,11 +3,11 @@
 }
 
 .review-list-item {
-  background-color: #95B8D1;
-  border-radius: 10px;
+  background-color: #D7D8C5;
+  /*border-radius: 10px;*/
   list-style: none;
-  padding: 10px;
-  border: 3px solid #376996;
+  padding: 15px;
+  /*border: 3px solid #376996;*/
   margin: 10px;
 }
 
@@ -18,4 +18,16 @@
   margin: 5px;
   margin-top: 10px;
   border-radius: 5px;
+}
+
+.vote-buttons {
+  width: 20%;
+}
+
+.review-body {
+  width: 80%;
+}
+
+.fa {
+  font-size: 40px;
 }

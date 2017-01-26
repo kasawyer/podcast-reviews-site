@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "CastHub" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Podcastaway" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -15,7 +15,7 @@
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text title"><a href="/">Podcast Your Votes</a></li>
+          <li class="menu-text title"><a href="/">Podcastaway</a></li>
           <li>
             <a href="#"></a>
             <ul class="menu vertical">
@@ -50,10 +50,12 @@
             <li><%= link_to "Sign in", new_user_session_path %></li>
             <li><%= link_to "Sign up", new_user_registration_path %></li>
           <% end %>
+          <li>
           <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
             <%= text_field_tag :search, params[:search], placeholder: "Search Podcasts" %>
             <%= submit_tag "Search", name: nil %>
           <% end %>
+        </li>
         </ul>
       </div>
     </div>
