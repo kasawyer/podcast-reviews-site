@@ -87,9 +87,6 @@ class Review extends Component {
       let total_votes = body;
       this.setState({ total_votes: total_votes })
     })
-    .then(response => {
-      this.props.getReviews();
-    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
@@ -118,9 +115,6 @@ class Review extends Component {
     .then(body => {
       let total_votes = body;
       this.setState({ total_votes: total_votes })
-    })
-    .then(response => {
-      this.props.getReviews();
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
