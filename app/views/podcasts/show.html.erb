@@ -44,10 +44,13 @@
   </ul>
 
   <br/>
-  <% if current_admin || current_user.id == @podcast.user.id  %>
-    <%= link_to "Edit", edit_podcast_path(@podcast), class: "edit-delete" %>
-    <%= link_to "Delete", @podcast, method: :delete,
-    data: { confirm: 'Are you sure?' }, class: "edit-delete" %>
+
+  <% if current_user || current_admin %>
+    <% if admin_signed_in? == true || (current_user.id == @podcast.user.id)  %>
+      <%= link_to "Edit", edit_podcast_path(@podcast), class: "edit-delete" %>
+      <%= link_to "Delete", @podcast, method: :delete,
+      data: { confirm: 'Are you sure?' }, class: "edit-delete" %>
+    <% end %>
   <% end %>
 
   <h1>Reviews</h1>
