@@ -211,13 +211,19 @@ class Review extends Component {
           />
         </div>
         <div className="review-body">
-          <p>Rating: {this.state.rating}</p>
-          <p>{this.state.user.name}</p>
+          <p>
+          <span className="prompt">User: </span>
+          {this.state.user.name}
+          </p>
+          <p>
+            <span className="prompt">Rating: </span>
+            {this.state.rating}
+          </p>
           <p>{this.state.body}</p>
+          <span className="edit-delete">{editButton}</span>
+          <span className="edit-delete">{deleteButton}</span>
+          {form}
         </div>
-        <span className="edit-delete">{editButton}</span>
-        <span className="edit-delete">{deleteButton}</span>
-        {form}
       </div>
     );
   }

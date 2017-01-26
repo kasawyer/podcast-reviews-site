@@ -22,6 +22,7 @@ input[type="submit"], .edit-delete {
   background-color: #8A8780;
   padding: 8px;
   font-size: 20px;
+  margin: 5px;
 }
 
 .edit-delete:hover {
@@ -91,4 +92,9 @@ a {
 
 .prompt {
   font-weight: bold;
+}
+
+#search, .search-button {
+  display: inline-block;
+  margin-right: 0px;
 }
