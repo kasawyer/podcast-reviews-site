@@ -80,14 +80,11 @@ class ReviewList extends Component {
         handleDelete={handleDelete}
         currentUserId={this.state.currentUserId}
         admin={this.state.admin}
-        // saveEdit={this.saveEdit}
-        getReviews={this.getReviews}
         />
       );
     }.bind(this));
     return (
       <div>
-        <h1>Reviews</h1>
         <p>{this.state.message}</p>
         {reviews_array}
       </div>

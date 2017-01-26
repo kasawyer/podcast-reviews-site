@@ -87,9 +87,6 @@ class Review extends Component {
       let total_votes = body;
       this.setState({ total_votes: total_votes })
     })
-    .then(response => {
-      this.props.getReviews();
-    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
@@ -118,9 +115,6 @@ class Review extends Component {
     .then(body => {
       let total_votes = body;
       this.setState({ total_votes: total_votes })
-    })
-    .then(response => {
-      this.props.getReviews();
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -200,18 +194,31 @@ class Review extends Component {
     return (
       <div className="review-list-item">
         <p>{this.state.message}</p>
-        <p>Rating: {this.state.rating}</p>
-        <p>{this.state.user.name}</p>
-        <p>{this.state.body}</p>
-        <p>{this.state.total_votes}</p>
-        <Upvote
-        handleUpvote={this.handleUpvote}
-        />
-        <Downvote
-        handleDownvote={this.handleDownvote}
-        />
-        <p>{editButton} {deleteButton}</p>
-        {form}
+        <div className="vote-buttons">
+          <Upvote
+          handleUpvote={this.handleUpvote}
+          />
+          <br />
+          <p>{this.state.total_votes}</p>
+          <Downvote
+          handleDownvote={this.handleDownvote}
+          />
+        </div>
+        <div className="review-body">
+          <p>
+          <span className="prompt">User: </span>
+          {this.state.user.name}
+          </p>
+          <p>
+            <span className="prompt">Rating: </span>
+            {this.state.rating}
+          </p>
+          <p>{this.state.body}</p>
+          <br/>
+          <span className="edit-delete">{editButton}</span>
+          <span className="edit-delete">{deleteButton}</span>
+          {form}
+        </div>
       </div>
     );
   }

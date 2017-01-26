@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "CastHub" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Podcastaway" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -14,19 +14,9 @@
   <body>
     <div class="top-bar">
       <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text title"><a href="/">Podcast Your Votes</a></li>
-          <li>
-            <a href="#"></a>
-            <ul class="menu vertical">
-              <li><a href="/podcasts/new">Add Podcast</a></li>
-              <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
-              <li><a href="https://www.itunes.com">iTunes</a></li>
-            </ul>
-          </li>
-
-        </ul>
+      <span class="menu-text title"><a href="/">Podcastaway</a></span>
       </div>
+
       <div class="top-bar-right">
         <ul class="menu">
           <% if admin_signed_in? %>
@@ -43,18 +33,35 @@
             <li></li>
             <li>Signed in as <%= current_user.name %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
           <% else %>
             <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
             <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
             <li><%= link_to "Sign in", new_user_session_path %></li>
             <li><%= link_to "Sign up", new_user_registration_path %></li>
           <% end %>
-          <li><input type="search" placeholder="Search"></li>
-          <li><button type="button" class="button">Search</button></li>
+          <li>
+            <ul class="dropdown menu" data-dropdown-menu>
+              <li>
+                <a href="#">Menu</a>
+                <ul class="menu vertical">
+                  <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
+                  <li><a href="/podcasts/new">Add Podcast</a></li>
+                  <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
+                  <li><a href="https://www.itunes.com">iTunes</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>  
+          <li>
+            <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
+              <%= submit_tag "Search", name: nil, class: "search-button" %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
+
     <div class="flash">
       <% flash.each do |key, value| %>
         <%= value %>

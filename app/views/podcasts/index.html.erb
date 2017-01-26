@@ -1,3 +1,28 @@
-<%= button_to "Add a podcast", new_podcast_path, method: :get %>
-<h1>All Podcasts</h1>
-<div id="podcast-list"/>
+<div class="page-body">
+  <% if params[:search] %>
+    <% if params[:search] == "" %>
+      <p class="search-results">Please enter search terms.</p>
+    <% elsif @podcasts.empty? %>
+      <p class="search-results">No results matched your search.</p>
+    <% else %>
+      <h1>Search results</h1>
+      <ul>
+        <% @podcasts.each do |podcast| %>
+          <a href="/podcasts/<%= podcast.id %>">
+            <li class="podcast-list-item">
+              <span class="podcast-name">
+                <%= podcast.name %><br />
+              </span>
+              <span class="provider-name">
+                <%= podcast.provider.name %>
+              </span>
+            </li>
+          </a>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <%= button_to "Add a podcast", new_podcast_path, method: :get %>
+  <h1>All Podcasts</h1>
+  <div id="podcast-list"/>
+</div>
