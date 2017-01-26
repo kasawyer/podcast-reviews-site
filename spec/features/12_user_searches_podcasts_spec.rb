@@ -3,9 +3,26 @@ require 'spec_helper'
 feature "user searches podcasts" do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:provider) { FactoryGirl.create(:provider) }
-  let!(:american) { FactoryGirl.create(:podcast, provider: provider, user: user) }
-  let!(:italian) { FactoryGirl.create(:podcast, name: "This Italian Life", provider: provider, user: user) }
-  let!(:fresh) { FactoryGirl.create(:podcast, name: "Fresh Air", provider: provider, user: user) }
+  let!(:american) do
+    FactoryGirl.create(:podcast, provider: provider, user: user)
+  end
+  let!(:italian) do
+    FactoryGirl.create(
+      :podcast,
+      name: "This Italian Life",
+      provider: provider,
+      user: user
+    )
+  end
+
+  let!(:fresh) do
+    FactoryGirl.create(
+      :podcast,
+      name: "Fresh Air",
+      provider: provider,
+      user: user
+    )
+  end
 
   scenario "user searches for a term with multiple matches" do
     visit "/"
