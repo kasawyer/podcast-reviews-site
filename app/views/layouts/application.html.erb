@@ -21,38 +21,41 @@
         <ul class="menu">
           <% if admin_signed_in? %>
             <% if !current_admin.avatar.url.nil? %>
-              <li><%= image_tag current_admin.avatar.url(:thumb) %></li>
+              <li class="avatar"><%= image_tag current_admin.avatar.url(:thumb) %></li>
             <% end %>
-            <li>Signed in as <%= current_admin.email %></li>
-            <li><%= link_to "Admin Sign out", destroy_admin_session_path, method: :delete %></li>
-            <li><%= link_to "Admin Account settings", edit_admin_registration_path, method: :get %></li>
-            <li><%= link_to "Edit User List", users_path, method: :get %></li>
+            <li>Signed in as <%= current_admin.name %></li>
           <% elsif user_signed_in? %>
             <% if !current_user.avatar.url.nil? %>
               <li class="avatar"><%= image_tag current_user.avatar.url(:thumb) %></li>
             <% end %>
             <li></li>
             <li>Signed in as <%= current_user.name %></li>
-            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li><%= link_to "Admin Sign in", new_admin_session_path %></li>
-            <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
-            <li><%= link_to "Sign in", new_user_session_path %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
           <% end %>
           <li>
             <ul class="dropdown menu" data-dropdown-menu>
               <li>
                 <a href="#">Menu</a>
                 <ul class="menu vertical">
-                  <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
-                  <li><a href="/podcasts/new">Add Podcast</a></li>
-                  <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
-                  <li><a href="https://www.itunes.com">iTunes</a></li>
+                  <% if admin_signed_in? %>
+                    <li><%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %></li>
+                    <li><%= link_to "Admin account settings", edit_admin_registration_path, method: :get %></li>
+                    <li><%= link_to "Edit user list", users_path, method: :get %></li>
+                  <% elsif user_signed_in? %>
+                    <li><a href="/podcasts/new">Add podcast</a></li>
+                    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+                    <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
+                  <% else %>
+                    <li><%= link_to "Sign in", new_user_session_path %></li>
+                    <li><%= link_to "Sign up", new_user_registration_path %></li>
+                    <li><%= link_to "Admin sign in", new_admin_session_path %></li>
+                  <% end %>
+                    <li><a href="https://www.soundcloud.com">Soundcloud</a></li>
+                    <li><a href="https://www.itunes.com">iTunes</a></li>
                 </ul>
               </li>
             </ul>
-          </li>  
+          </li>
           <li>
             <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
               <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
