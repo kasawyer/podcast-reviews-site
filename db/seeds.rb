@@ -21,3 +21,27 @@ if Rails.env.development?
   Category.create(name: "Interviews")
   Category.create(name: "Tech")
 end
+
+if Rails.env.production?
+  Category.create(name: "Documentary")
+  Category.create(name: "Politics")
+  Category.create(name: "Comedy")
+  Category.create(name: "Programming")
+  Category.create(name: "Advice")
+  Category.create(name: "Feminist")
+  Category.create(name: "Educational")
+  Category.create(name: "Science fiction")
+  Category.create(name: "Horror")
+  Category.create(name: "Fiction")
+  Category.create(name: "News")
+  Category.create(name: "History")
+  Category.create(name: "Sports")
+  Category.create(name: "Movies")
+  Category.create(name: "Pop culture")
+  Category.create(name: "Religion")
+  Category.create(name: "Music")
+  Category.create(name: "Economics")
+  Category.create(name: "Psychology")
+  Category.create(name: "Interviews")
+  Category.create(name: "Tech")
+end

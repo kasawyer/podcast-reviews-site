@@ -22,7 +22,11 @@
       </ul>
     <% end %>
   <% end %>
-  <%= button_to "Add a podcast", new_podcast_path, method: :get %>
+
+  <% if current_user || current_admin %>
+    <%= button_to "Add a podcast", new_podcast_path, method: :get, class: "add"  %>
+  <% end %>
+  
   <h1>All Podcasts</h1>
   <div id="podcast-list"/>
 </div>

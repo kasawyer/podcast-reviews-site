@@ -45,7 +45,7 @@
 
     <div class="check-boxes">
       <%= f.label :category_ids, "Categories" %>
-      <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
+        <%= f.collection_check_boxes :category_ids, @categories, :id, :name %>
     </div>
 
     <div class="actions create-podcast">
