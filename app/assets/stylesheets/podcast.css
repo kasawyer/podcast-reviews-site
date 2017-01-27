@@ -31,7 +31,6 @@ h2 {
   color: white;
 }
 
-
 input[type="submit"], .edit-delete {
   border: none;
   color: white;
@@ -102,7 +101,16 @@ a {
   font-size: 20px;
   background-color: #D7D8C5;
   padding: 20px;
-  margin: 0px;
+  margin-left: 0px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  display:inline-block;
+  width: 100%;
+}
+
+.podcast-info img {
+  float: left;
+  padding-right: 20px;
 }
 
 .avatar {

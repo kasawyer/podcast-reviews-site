@@ -5,4 +5,14 @@
 
 .page-body{
   color: white;
+  margin: 20px;
+}
+
+input[type="submit"], .edit-delete {
+  border: none;
+  color: white;
+  background-color: #8A8780;
+  padding: 8px;
+  font-size: 20px;
+  margin-left: 10px;
 }
