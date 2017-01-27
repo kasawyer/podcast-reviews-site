@@ -48,3 +48,7 @@
 .edit-review label, .edit-review h2 {
   color: black;
 }
+
+.action {
+  margin-left: -10px;
+}

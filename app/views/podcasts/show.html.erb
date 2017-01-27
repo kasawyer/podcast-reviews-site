@@ -5,7 +5,7 @@
   <ul class="podcast-info">
     <% if @podcast.image_url != "" && !@podcast.image_url.nil? %>
       <li>
-        <img src="<%= @podcast.image_url %>" class="center" width="200">
+        <img src="<%= @podcast.image_url %>" class="center" width="250">
       </li>
     <% else %>
     <% end %>
@@ -77,7 +77,7 @@
         <%= f.text_area :body %>
       </div>
 
-      <div class="actions">
+      <div class="action">
         <%= f.submit "Add review"%>
       </div>
     <% end %>
