@@ -8,19 +8,19 @@ RSpec.describe Api::V1::PodcastsController, type: :controller do
   end
   let!(:italian) do
     FactoryGirl.create(
-    :podcast,
-    name: "This Italian Life",
-    provider: provider,
-    user: user,
-    release_year: 2010
+      :podcast,
+      name: "This Italian Life",
+      provider: provider,
+      user: user,
+      release_year: 2010
     )
   end
   let!(:fresh) do
     FactoryGirl.create(
-    :podcast,
-    name: "Fresh Air",
-    provider: provider,
-    user: user
+      :podcast,
+      name: "Fresh Air",
+      provider: provider,
+      user: user
     )
   end
 
@@ -30,7 +30,9 @@ RSpec.describe Api::V1::PodcastsController, type: :controller do
       json = JSON.parse(response.body)
       expect(json.length).to eq(3)
       expect(json[0]["name"]).to eq("This American Life")
-      expect(json[0]["description"]).to eq("Ira Glass doing what he does best - telling us great stories.")
+      expect(json[0]["description"]).to eq(
+        "Ira Glass doing what he does best - telling us great stories."
+      )
       expect(json[1]["release_year"]).to eq(2010)
       expect(json[1]["itunes_url"]).to eq("http://www.apple.com/itunes")
       expect(json[2]["soundcloud_url"]).to eq("https://soundcloud.com")

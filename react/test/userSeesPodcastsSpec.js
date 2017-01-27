@@ -46,7 +46,7 @@ describe('Podcast List', () => {
 
         expect(pageText).toMatch('NPR');
         expect(pageText).toMatch('HHC.com');
-        
+
         done();
       }, 0);
     });
