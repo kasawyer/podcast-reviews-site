@@ -3,11 +3,13 @@
 
   <ul>
     <% @users.each do |user| %>
-      <div>
-        <%= user.name %>
-      </div>
-      <div>
-        <%= user.email %>
+      <div class="podcast-list-item">
+        <div class="podcast-name">
+          <%= user.name %>
+        </div>
+        <div class="provider-name">
+          <%= user.email %>
+        </div>
       </div>
       <div>
         <%= link_to "DELETE", user_path(user.id), method: :delete,

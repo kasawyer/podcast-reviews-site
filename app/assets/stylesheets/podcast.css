@@ -69,7 +69,7 @@ a {
 }
 
 .page-body {
-  margin: 30px;
+  margin: 20px;
 }
 
 .podcast-list {
@@ -78,7 +78,7 @@ a {
 
 .podcast-list-item {
   background-color: #D7D8C5;
-  margin: 10px;
+  margin: 10px 25px 10px 10px;
   color: #E47267;
   padding: 10px;
   font-size: 20px;
@@ -91,7 +91,7 @@ a {
 
 .podcast-list-item:hover {
   background-color: #8A8780;
-  margin: 10px;
+  margin: 10px 25px 10px 10px;
   color: white;
   padding: 10px;
   font-size: 20px;
@@ -117,11 +117,30 @@ a {
   font-weight: bold;
 }
 
-#search, .search-button {
-  display: inline-block;
+#search {
+  vertical-align: top;
+  display: inline;
+  margin-top: 5px;
   margin-right: 0px;
+  margin-left: 10px;
+}
+
+.search-button {
+  vertical-align: top;
+  display: inline;
+  margin-top: 5px;
+  margin-right: 0px;
+  height: 39px;
+}
+
+.add {
+  margin-left: 30px;
 }
 
 .cancel {
   margin-top: 10px;
+}
+
+.check-boxes {
+  width: 89%;
 }
