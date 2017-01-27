@@ -37,6 +37,7 @@
               <li>
                 <a href="#">Menu</a>
                 <ul class="menu vertical">
+                  <li><%= link_to "All podcasts", podcasts_path %></li>
                   <% if admin_signed_in? %>
                     <li><%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %></li>
                     <li><%= link_to "Admin account settings", edit_admin_registration_path, method: :get %></li>
@@ -58,8 +59,10 @@
           </li>
           <li>
             <%= form_tag(podcasts_path, method: "get", id: "search-form") do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
-              <%= submit_tag "Search", name: nil, class: "search-button" %>
+              <div class="search-container">
+                <%= text_field_tag :search, params[:search], placeholder: "Search podcasts" %>
+                <%= submit_tag "Search", name: nil, class: "search-button" %>
+              </div>
             <% end %>
           </li>
         </ul>
