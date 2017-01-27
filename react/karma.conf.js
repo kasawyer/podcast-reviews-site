@@ -10,14 +10,20 @@ module.exports = function(config) {
 
     // files that Karma will server to the browser
     files: [
+      // load fixtures
+      'test/fixtures/**/*.json',
       // use Babel polyfill to emulate a full ES6 environment in PhantomJS
       '../node_modules/babel-polyfill/dist/polyfill.js',
       // entry file for Webpack
-      'test/testHelper.js'
+      'test/testHelper.js',
+      // use whatwg-fetch polyfill
+      '../node_modules/whatwg-fetch/fetch.js'
     ],
 
     // before serving test/testHelper.js to the browser
     preprocessors: {
+      // process json files with karma-json-fixtures-preprocessor
+      'test/fixtures/**/*.json': ['json_fixtures'],
       'test/testHelper.js': [
         // use karma-webpack to preprocess the file via webpack
         'webpack',
@@ -39,6 +45,10 @@ module.exports = function(config) {
       },
       module: {
         loaders: [
+          {
+            include: /\.json$/,
+            loader: 'json-loader'
+          },
           // use babel-loader to transpile the test and src folders
           {
             test: /\.jsx?$/,
@@ -69,9 +79,14 @@ module.exports = function(config) {
     reporters: [
       // use karma-spec-reporter to report results to the browser's console
       'spec',
+      'progress',
       // use karma-coverage to report test coverage
       'coverage'
     ],
+
+    jsonFixturesPreprocessor: {
+      stripPrefix: 'test/fixtures/'
+    },
 
     // karma-spec-reporter configuration
     specReporter: {

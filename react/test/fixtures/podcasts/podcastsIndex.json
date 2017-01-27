@@ -1,0 +1,41 @@
+[
+{
+"id": 1,
+"name": "Serial",
+"provider_id": 1,
+"description": "",
+"release_year": null,
+"itunes_url": "",
+"soundcloud_url": "",
+"image_url": null,
+"created_at": "2017-01-26T17:35:59.229Z",
+"updated_at": "2017-01-26T17:35:59.229Z",
+"user_id": 1
+},
+{
+"id": 2,
+"name": "Hardcore History",
+"provider_id": 2,
+"description": "An awesome breakdown of historical events",
+"release_year": 2012,
+"itunes_url": "https://itunes.apple.com/us/artist/dan-carlins-hardcore-history/id635044422",
+"soundcloud_url": "https://soundcloud.com/hardcore-history",
+"image_url": null,
+"created_at": "2017-01-26T21:56:28.108Z",
+"updated_at": "2017-01-26T21:56:28.108Z",
+"user_id": 3
+},
+{
+"id": 4,
+"name": "This American Life",
+"provider_id": 1,
+"description": "Each week, they tell several stories on the same topic.",
+"release_year": null,
+"itunes_url": "",
+"soundcloud_url": "",
+"image_url": null,
+"created_at": "2017-01-26T22:20:11.980Z",
+"updated_at": "2017-01-26T22:20:11.980Z",
+"user_id": 5
+}
+]
