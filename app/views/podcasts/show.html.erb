@@ -32,13 +32,13 @@
 
     <% if @podcast.itunes_url != "" %>
     <li>
-      <a href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
+      <a target="_blank" href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
     </li>
     <% end %>
 
     <% if @podcast.soundcloud_url != "" %>
     <li>
-      <a href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
+      <a target="_blank" href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
     </li>
     <% end %>
   </ul>
