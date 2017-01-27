@@ -123,7 +123,7 @@ class PodcastsController < ApplicationController
 
   def podcast_params
     params.require(:podcast).permit(:name, :description, :host, :provider_name,
-      :average_length, :release_year, :itunes_url, :soundcloud_url,
+      :average_length, :release_year, :image_url, :itunes_url, :soundcloud_url,
       hosts_attributes: [:name])
   end
 end

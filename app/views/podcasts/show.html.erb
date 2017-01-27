@@ -1,46 +1,56 @@
 <div class="show-page">
   <h1><%= @podcast.name %></h1>
 
+
   <ul class="podcast-info">
-    <li>
-      <span class="prompt">Provider:</span> <%= @podcast.provider.name %>
-    </li>
-
-    <% if !@podcast.categories.empty? %>
-    <li>
-      <span class="prompt">Categories:</span> <%= @category_names.to_sentence %>
-    </li>
+    <% if @podcast.image_url != "" && !@podcast.image_url.nil? %>
+      <li>
+        <img src="<%= @podcast.image_url %>" class="center" width="200">
+      </li>
+    <% else %>
     <% end %>
 
-    <% if !@podcast.description.nil? && !@podcast.description.empty? %>
-    <li>
-      <span class="prompt">Description:</span> <%= @podcast.description %>
-    </li>
-    <% end %>
+    <div class="content">
+      <li>
+        <span class="prompt">Provider:</span> <%= @podcast.provider.name %>
+      </li>
 
-    <% if !@podcast.hosts.empty? %>
-    <li>
-      <span class="prompt">Host(s):</span> <%= @host_names.to_sentence %>
-    </li>
-    <% end %>
+      <% if !@podcast.categories.empty? %>
+      <li>
+        <span class="prompt">Categories:</span> <%= @category_names.to_sentence %>
+      </li>
+      <% end %>
 
-    <% if @podcast.release_year %>
-    <li>
-      <span class="prompt">Release year:</span> <%= @podcast.release_year %>
-    </li>
-    <% end %>
+      <% if !@podcast.description.nil? && !@podcast.description.empty? %>
+      <li>
+        <span class="prompt">Description:</span> <%= @podcast.description %>
+      </li>
+      <% end %>
 
-    <% if @podcast.itunes_url != "" %>
-    <li>
-      <a target="_blank" href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
-    </li>
-    <% end %>
+      <% if !@podcast.hosts.empty? %>
+      <li>
+        <span class="prompt">Host(s):</span> <%= @host_names.to_sentence %>
+      </li>
+      <% end %>
 
-    <% if @podcast.soundcloud_url != "" %>
-    <li>
-      <a target="_blank" href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
-    </li>
-    <% end %>
+      <% if @podcast.release_year %>
+      <li>
+        <span class="prompt">Release year:</span> <%= @podcast.release_year %>
+      </li>
+      <% end %>
+
+      <% if @podcast.itunes_url != "" %>
+      <li>
+        <a target="_blank" href="<%= @podcast.itunes_url %>">Listen on iTunes</a>
+      </li>
+      <% end %>
+
+      <% if @podcast.soundcloud_url != "" %>
+      <li>
+        <a target="_blank" href="<%= @podcast.soundcloud_url %>">Listen on SoundCloud</a>
+      </li>
+      <% end %>
+    </div>
   </ul>
 
   <br/>
@@ -58,7 +68,7 @@
     <h2>Add a review</h2>
     <%= form_for [@podcast, @new_review] do |f| %>
       <div class="field">
-        <%= f.label :rating %>
+        <%= f.label :rating, "Rating (1-5)" %>
         <%= f.text_field :rating %>
       </div>
 
