@@ -1,7 +1,3 @@
-[ ![Codeship Status for kasawyer/podcast-reviews-site](https://app.codeship.com/projects/387d0b60-bf12-0134-451e-0ef15c5d34cb/status?branch=master)](https://app.codeship.com/projects/196496)
-![Code Climate](https://codeclimate.com/github/kasawyer/podcast-reviews-site.png)
-![Coverage Status](https://coveralls.io/repos/kasawyer/podcast-reviews-site/badge.png)
-
 # Project Title
 
 Podcastaway is a web application built on Rails that allows you to add, review, and vote on podcasts!
@@ -37,3 +33,7 @@ This app can be viewed at https://wwww.podcastaway.herokuapp.com
 * **Katherine Sawyer** - (https://github.com/kasawyer)
 * **Rahul Krishnan** - (https://github.com/Rahul-Krishnan)
 * **Danny Gleason** - (https://github.com/dcgleason)
+
+[ ![Codeship Status for kasawyer/podcast-reviews-site](https://app.codeship.com/projects/387d0b60-bf12-0134-451e-0ef15c5d34cb/status?branch=master)](https://app.codeship.com/projects/196496)
+![Code Climate](https://codeclimate.com/github/kasawyer/podcast-reviews-site.png)
+![Coverage Status](https://coveralls.io/repos/kasawyer/podcast-reviews-site/badge.png)
