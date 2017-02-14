@@ -1,4 +1,4 @@
-# Project Title
+# Podcastaway
 
 Podcastaway is a web application built on Rails that allows you to add, review, and vote on podcasts!
 
