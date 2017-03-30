@@ -114,7 +114,7 @@ class Review extends Component {
     .then(response => response.json())
     .then(body => {
       let total_votes = body;
-      this.setState({ total_votes: total_votes })
+      this.setState({ total_votes: total_votes });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
